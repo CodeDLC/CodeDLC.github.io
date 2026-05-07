@@ -6,7 +6,7 @@
 const CONFIG = {
 
   // ─── ОСНОВНАЯ ИНФОРМАЦИЯ ────────────────────────────────
-  clientName: "Vortex Client",
+  clientName: "CodeDLC",
   clientTagline: {
     ru: "Превосходство. Скорость. Победа.",
     en: "Supremacy. Speed. Victory.",
@@ -53,10 +53,10 @@ const CONFIG = {
 
   // ─── КОНТАКТЫ ────────────────────────────────────────────
   contact: {
-    email:   "ntfhelp@mail.ru",             // Email поддержки
+    email:   "nullangelr@gmail.com",             // Email поддержки
     hours:   "ПН–ПТ 10:00–18:00 МСК",      // Часы работы
-    discord: "https://discord.gg/XXXXXXX",  // ← Вставьте ссылку Discord
-    telegram:"https://t.me/XXXXXXX"         // ← Вставьте ссылку Telegram
+    discord: "https://discord.gg/НЕТУ",  // ← Вставьте ссылку Discord
+    telegram:"https://t.me/CodeDLC0"         // ← Вставьте ссылку Telegram
   },
 
   // ─── ВИДЕО ───────────────────────────────────────────────
