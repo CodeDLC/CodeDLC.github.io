@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CodeDLC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* ========================= */
+/* ROOT */
+/* ========================= */
+
+:root{
+
+    --main:#8b5cf6;
+    --main-dark:#6d28d9;
+
+    --bg:#050507;
+
+    --glass:rgba(255,255,255,.05);
+    --glass2:rgba(255,255,255,.03);
+
+    --border:rgba(255,255,255,.08);
+
+    --text:#ffffff;
+    --gray:#b8b8b8;
+
+}
+
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Montserrat',sans-serif;
+
+    background:var(--bg);
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+/* ========================= */
+/* BACKGROUND */
+/* ========================= */
+
+.bg{
+
+    position:fixed;
+    inset:0;
+
+    z-index:-5;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(139,92,246,.35),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(139,92,246,.18),
+    transparent 35%),
+
+    #050507;
+
+}
+
+.grid{
+
+    position:fixed;
+    inset:0;
+
+    z-index:-4;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+}
+
+.blur1,
+.blur2{
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    z-index:-3;
+
+}
+
+.blur1{
+
+    width:400px;
+    height:400px;
+
+    background:#8b5cf6;
+
+    top:-100px;
+    left:-100px;
+
+    opacity:.28;
+
+}
+
+.blur2{
+
+    width:300px;
+    height:300px;
+
+    background:#6d28d9;
+
+    bottom:-100px;
+    right:-100px;
+
+    opacity:.18;
+
+}
+
+/* ========================= */
+/* GLASS */
+/* ========================= */
+
+.glass{
+
+    background:var(--glass);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    border:1px solid var(--border);
+
+    box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.04),
+    0 0 30px rgba(139,92,246,.08);
+
+}
+
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
+nav{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:82px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+
+    z-index:999;
+
+    background:
+    rgba(10,10,15,.72);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:900;
+
+    color:#8b5cf6;
+
+    letter-spacing:1px;
+
+    flex-shrink:0;
+
+    text-shadow:
+    0 0 20px rgba(139,92,246,.45);
+
+}
+
+/* ========================= */
+/* NAV LINKS */
+/* ========================= */
+
+.nav-links{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    color:#d0d0d0;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:#8b5cf6;
+
+}
+
+/* ========================= */
+/* RIGHT */
+/* ========================= */
+
+.mobile-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:auto;
+
+}
+
+/* ========================= */
+/* LANGUAGE */
+/* ========================= */
+
+.lang-switch{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.lang-btn{
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    backdrop-filter:blur(20px);
+
+    flex-shrink:0;
+
+}
+
+.lang-btn.active{
+
+    background:#8b5cf6;
+
+    border-color:transparent;
+
+    box-shadow:
+    0 0 20px rgba(139,92,246,.35);
+
+}
+
+/* ========================= */
+/* LOGIN */
+/* ========================= */
+
+.login-btn-nav{
+
+    height:48px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 20px rgba(139,92,246,.35);
+
+}
+
+.login-btn-nav:hover{
+
+    background:#6d28d9;
+
+    transform:translateY(-2px);
+
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+    140px 20px
+    80px;
+
+}
+
+.hero-content{
+
+    width:100%;
+    max-width:1000px;
+
+}
+
+.version{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    margin-bottom:35px;
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+.version::before{
+
+    content:'⬤';
+
+    color:#8b5cf6;
+
+    font-size:11px;
+
+}
+
+.hero h1{
+
+    font-size:
+    clamp(70px,10vw,180px);
+
+    line-height:.95;
+
+    margin-bottom:25px;
+
+    font-weight:900;
+
+    color:#8b5cf6;
+
+    text-shadow:
+    0 0 35px rgba(139,92,246,.55),
+    0 0 70px rgba(139,92,246,.22);
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    color:var(--gray);
+
+    font-weight:600;
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.buttons{
+
+    margin-top:45px;
+
+    display:flex;
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    padding:18px 38px;
+
+    border-radius:22px;
+
+    text-decoration:none;
+
+    font-weight:800;
+
+    transition:.35s;
+
+}
+
+.btn-primary{
+
+    background:#8b5cf6;
+
+    color:white;
+
+    box-shadow:
+    0 0 25px rgba(139,92,246,.45);
+
+}
+
+.btn-primary:hover{
+
+    background:#6d28d9;
+
+    transform:translateY(-5px);
+
+}
+
+.btn-secondary{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    backdrop-filter:blur(20px);
+
+}
+
+.btn-secondary:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#8b5cf6;
+
+}
+
+/* ========================= */
+/* FEATURES */
+/* ========================= */
+
+.features{
+
+    padding:100px 20px;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    font-size:54px;
+
+    font-weight:900;
+
+    margin-bottom:60px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+    max-width:1300px;
+
+    margin:auto;
+
+}
+
+.card{
+
+    padding:35px;
+
+    border-radius:30px;
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+    0 0 30px rgba(139,92,246,.18);
+
+}
+
+.card-icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    rgba(139,92,246,.15);
+
+    margin-bottom:25px;
+
+    font-size:30px;
+
+}
+
+.card h3{
+
+    font-size:30px;
+
+    margin-bottom:18px;
+
+    font-weight:900;
+
+}
+
+.card p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+    font-weight:600;
+
+}
+
+/* ========================= */
+/* CLIENT */
+/* ========================= */
+
+.client{
+
+    padding:100px 20px;
+
+}
+
+.client-box{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:flex;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+}
+
+.sidebar{
+
+    width:280px;
+
+    padding:30px;
+
+    border-right:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.sidebar button{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.05);
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sidebar button.active,
+.sidebar button:hover{
+
+    background:#8b5cf6;
+
+}
+
+.content{
+
+    flex:1;
+
+    padding:45px;
+
+}
+
+.tab{
+
+    display:none;
+
+}
+
+.tab.active{
+
+    display:block;
+
+}
+
+.tab h2{
+
+    font-size:44px;
+
+    margin-bottom:20px;
+
+    font-weight:900;
+
+}
+
+.tab p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+/* ========================= */
+/* AUTH */
+/* ========================= */
+
+.auth-panel{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:2000;
+
+    padding:20px;
+
+}
+
+.auth-box{
+
+    width:100%;
+    max-width:450px;
+
+    padding:40px;
+
+    border-radius:35px;
+
+}
+
+.auth-box h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:30px;
+
+    font-weight:900;
+
+}
+
+.input-box{
+
+    margin-bottom:20px;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:18px 20px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+.auth-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.auth-btn:hover{
+
+    background:#6d28d9;
+
+}
+
+.auth-switch{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#bdbdbd;
+
+}
+
+.auth-switch span{
+
+    color:#8b5cf6;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:900px){
+
+    nav{
+
+        padding:0 14px;
+
+    }
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+    .logo{
+
+        font-size:28px;
+
+    }
+
+    .mobile-actions{
+
+        gap:8px;
+
+    }
+
+    .lang-btn{
+
+        width:42px;
+        height:42px;
+
+        border-radius:14px;
+
+        font-size:13px;
+
+    }
+
+    .login-btn-nav{
+
+        height:42px;
+
+        padding:0 16px;
+
+        border-radius:14px;
+
+        font-size:14px;
+
+    }
+
+    .hero{
+
+        padding-top:120px;
+
+    }
+
+    .hero h1{
+
+        font-size:68px;
+
+    }
+
+    .hero p{
+
+        font-size:16px;
+
+        line-height:1.7;
+
+    }
+
+    .buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        height:64px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        font-size:18px;
+
+    }
+
+    .section-title{
+
+        font-size:38px;
+
+    }
+
+    .client-box{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        border-right:none;
+
+        border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+    }
+
+    .content{
+
+        padding:30px;
+
+    }
+
+    .tab h2{
+
+        font-size:34px;
+
+    }
+
+}
+
+/* ========================= */
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+CodeDLC
+</div>
+
+<div class="nav-links">
+
+<a href="#home">Главная</a>
+<a href="#features">Функции</a>
+<a href="#client">Клиент</a>
+
+</div>
+
+<div class="mobile-actions">
+
+<div class="lang-switch">
+
+<button class="lang-btn active"
+onclick="setLanguage('ru',this)">
+RU
+</button>
+
+<button class="lang-btn"
+onclick="setLanguage('en',this)">
+EN
+</button>
+
+</div>
+
+<button class="login-btn-nav"
+onclick="openAuth()">
+Login
+</button>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="version glass">
+Minecraft 1.21.4
+</div>
+
+<h1>
+CodeDLC
+</h1>
+
+<p id="heroText">
+CodeDLC — современный visual client
+для Minecraft 1.21.4.
+Премиальный glass интерфейс,
+плавные анимации и максимальный FPS.
+</p>
+
+<div class="buttons">
+
+<a href="#" class="btn btn-primary">
+Download Client
+</a>
+
+<a href="https://t.me/CodeDLC0"
+class="btn btn-secondary">
+Telegram
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+<h2 class="section-title"
+id="featuresTitle">
+Функции клиента
+</h2>
+
+<div class="cards">
+
+<div class="card glass">
+
+<div class="card-icon">
+🚀
+</div>
+
+<h3>
+FPS Boost
+</h3>
+
+<p>
+Максимальная оптимизация
+и плавность Minecraft.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="card-icon">
+✨
+</div>
+
+<h3>
+Liquid Glass UI
+</h3>
+
+<p>
+Интерфейс в стиле
+жидкого стекла.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="card-icon">
+⚔️
+</div>
+
+<h3>
+PvP Features
+</h3>
+
+<p>
+Hit-анимации
+и PvP функции.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="card-icon">
+🌍
+</div>
+
+<h3>
+RU / EN
+</h3>
+
+<p>
+Поддержка
+двух языков.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CLIENT -->
+
+<section class="client"
+id="client">
+
+<h2 class="section-title">
+Client Menu
+</h2>
+
+<div class="client-box glass">
+
+<div class="sidebar">
+
+<button class="tab-btn active"
+onclick="openTab(event,'visual')">
+Visual
+</button>
+
+<button class="tab-btn"
+onclick="openTab(event,'fps')">
+FPS
+</button>
+
+<button class="tab-btn"
+onclick="openTab(event,'pvp')">
+PvP
+</button>
+
+<button class="tab-btn"
+onclick="openTab(event,'settings')">
+Settings
+</button>
+
+</div>
+
+<div class="content">
+
+<div class="tab active"
+id="visual">
+
+<h2>
+Visual System
+</h2>
+
+<p>
+Glass интерфейс,
+blur эффекты
+и плавные анимации.
+</p>
+
+</div>
+
+<div class="tab"
+id="fps">
+
+<h2>
+FPS Boost
+</h2>
+
+<p>
+Оптимизация рендера
+и повышение FPS.
+</p>
+
+</div>
+
+<div class="tab"
+id="pvp">
+
+<h2>
+PvP Features
+</h2>
+
+<p>
+Combat функции
+и кастомные hit-анимации.
+</p>
+
+</div>
+
+<div class="tab"
+id="settings">
+
+<h2>
+Client Settings
+</h2>
+
+<p>
+Настройка интерфейса,
+цветов и клиента.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AUTH -->
+
+<div class="auth-panel"
+id="authPanel">
+
+<div class="auth-box glass">
+
+<h2 id="authTitle">
+Авторизация
+</h2>
+
+<div class="input-box">
+
+<input type="text"
+placeholder="Login">
+
+</div>
+
+<div class="input-box">
+
+<input type="password"
+placeholder="Password">
+
+</div>
+
+<button class="auth-btn"
+id="authBtn">
+Войти
+</button>
+
+<div class="auth-switch">
+
+<span onclick="switchAuth()"
+id="switchText">
+Создать аккаунт
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ========================= */
+/* AUTH */
+/* ========================= */
+
+function openAuth(){
+
+    document
+    .getElementById("authPanel")
+    .style.display="flex";
+
+}
+
+window.onclick=function(e){
+
+    let panel=
+    document
+    .getElementById("authPanel");
+
+    if(e.target===panel){
+
+        panel.style.display="none";
+
+    }
+
+}
+
+/* ========================= */
+/* TABS */
+/* ========================= */
+
+function openTab(event,tabId){
+
+    let tabs=
+    document.querySelectorAll(".tab");
+
+    let buttons=
+    document.querySelectorAll(".tab-btn");
+
+    tabs.forEach(tab=>{
+
+        tab.classList.remove("active");
+
+    });
+
+    buttons.forEach(btn=>{
+
+        btn.classList.remove("active");
+
+    });
+
+    document
+    .getElementById(tabId)
+    .classList
+    .add("active");
+
+    event.target
+    .classList
+    .add("active");
+
+}
+
+/* ========================= */
+/* LOGIN */
+/* ========================= */
+
+let login=true;
+
+function switchAuth(){
+
+    login=!login;
+
+    if(login){
+
+        document
+        .getElementById("authTitle")
+        .innerText="Авторизация";
+
+        document
+        .getElementById("authBtn")
+        .innerText="Войти";
+
+        document
+        .getElementById("switchText")
+        .innerText="Создать аккаунт";
+
+    }else{
+
+        document
+        .getElementById("authTitle")
+        .innerText="Регистрация";
+
+        document
+        .getElementById("authBtn")
+        .innerText="Создать аккаунт";
+
+        document
+        .getElementById("switchText")
+        .innerText="Уже есть аккаунт?";
+
+    }
+
+}
+
+/* ========================= */
+/* LANGUAGE */
+/* ========================= */
+
+function setLanguage(lang,btn){
+
+    document
+    .querySelectorAll(".lang-btn")
+    .forEach(el=>{
+
+        el.classList.remove("active");
+
+    });
+
+    btn.classList.add("active");
+
+    if(lang==="en"){
+
+        document
+        .getElementById("heroText")
+        .innerText=
+        "CodeDLC is a premium Minecraft 1.21.4 visual client with liquid glass UI, smooth animations and high performance.";
+
+        document
+        .getElementById("featuresTitle")
+        .innerText=
+        "Client Features";
+
+        document
+        .getElementById("authTitle")
+        .innerText=
+        "Authorization";
+
+        document
+        .getElementById("authBtn")
+        .innerText=
+        "Login";
+
+        document
+        .getElementById("switchText")
+        .innerText=
+        "Create account";
+
+    }
+
+    if(lang==="ru"){
+
+        document
+        .getElementById("heroText")
+        .innerText=
+        "CodeDLC — современный visual client для Minecraft 1.21.4. Премиальный glass интерфейс, плавные анимации и максимальный FPS.";
+
+        document
+        .getElementById("featuresTitle")
+        .innerText=
+        "Функции клиента";
+
+        document
+        .getElementById("authTitle")
+        .innerText=
+        "Авторизация";
+
+        document
+        .getElementById("authBtn")
+        .innerText=
+        "Войти";
+
+        document
+        .getElementById("switchText")
+        .innerText=
+        "Создать аккаунт";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
