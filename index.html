@@ -1,513 +1,711 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeDLC - 1.21.4</title>
-  <meta name="description" content="CodeDLC - New Era" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CodeDLC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Montserrat',sans-serif;
+
+    background:#050507;
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+/* BACKGROUND */
+
+.bg{
+
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(140,82,255,.35),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(124,58,237,.25),
+    transparent 35%),
+
+    #050507;
+
+    z-index:-5;
+
+}
+
+.grid{
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    z-index:-4;
+
+}
+
+/* NAVBAR */
+
+nav{
+
+    width:100%;
+
+    height:92px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+
+    background:
+    rgba(7,7,10,.72);
+
+    backdrop-filter:blur(22px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    z-index:999;
+
+}
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.logo img{
+
+    width:58px;
+    height:58px;
+
+    border-radius:18px;
+
+    object-fit:cover;
+
+    box-shadow:
+    0 0 35px rgba(140,82,255,.45);
+
+}
+
+.logo span{
+
+    font-size:34px;
+
+    font-weight:900;
+
+    color:#9d6bff;
+
+    text-shadow:
+    0 0 30px rgba(140,82,255,.5);
+
+}
+
+/* LANGUAGE */
+
+.lang-box{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.lang-btn{
+
+    width:65px;
+    height:65px;
+
+    border:none;
+
+    border-radius:22px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.lang-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.lang-btn.active{
+
+    background:
+    linear-gradient(
+    135deg,
+    #a970ff,
+    #6d28d9);
+
+    box-shadow:
+    0 0 35px rgba(140,82,255,.6);
+
+}
+
+/* HERO */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+    150px 20px
+    120px;
+
+}
+
+.hero-content{
+
+    width:100%;
+    max-width:900px;
+
+}
+
+/* HERO LOGO */
+
+.hero-logo{
+
+    width:190px;
+    height:190px;
+
+    margin:
+    0 auto 40px;
+
+    padding:15px;
+
+    border-radius:42px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    animation:float 4s ease-in-out infinite;
+
+    box-shadow:
+    0 0 60px rgba(140,82,255,.15);
+
+}
+
+.hero-logo img{
+
+    width:100%;
+    height:100%;
+
+    border-radius:30px;
+
+    object-fit:cover;
+
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* VERSION */
+
+.version{
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:18px 38px;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.07);
+
+    margin-bottom:40px;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    backdrop-filter:blur(20px);
+
+}
+
+/* TITLE */
+
+.hero h1{
+
+    font-size:
+    clamp(72px,15vw,170px);
+
+    line-height:.9;
+
+    font-weight:900;
+
+    margin-bottom:35px;
+
+    background:
+    linear-gradient(
+    180deg,
+    #ffffff,
+    #9d6bff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 45px rgba(140,82,255,.45);
+
+}
+
+/* TEXT */
+
+.hero p{
+
+    color:#d7d7d7;
+
+    font-size:24px;
+
+    line-height:1.8;
+
+    font-weight:700;
+
+}
+
+/* BUTTONS */
+
+.buttons{
+
+    margin-top:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* BUTTON */
+
+.btn{
+
+    width:100%;
+
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    border-radius:32px;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    transition:.35s;
+
+}
+
+/* DOWNLOAD */
+
+.btn-download{
+
+    background:
+    linear-gradient(
+    135deg,
+    #b279ff,
+    #6d28d9);
+
+    color:white;
+
+    box-shadow:
+    0 0 45px rgba(140,82,255,.45);
+
+}
+
+.btn-download:hover{
+
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    box-shadow:
+    0 0 75px rgba(140,82,255,.7);
+
+}
+
+/* TELEGRAM */
+
+.btn-tg{
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.07);
+
+    backdrop-filter:blur(20px);
+
+    color:white;
+
+}
+
+.btn-tg:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#9d6bff;
+
+    box-shadow:
+    0 0 35px rgba(140,82,255,.25);
+
+}
+
+/* FOOTER */
+
+footer{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+
+    height:55px;
+
+    padding:0 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:
+    rgba(8,8,12,.72);
+
+    backdrop-filter:blur(18px);
+
+    border-top:
+    1px solid rgba(255,255,255,.05);
+
+    z-index:9999;
+
+}
+
+/* FOOTER LEFT */
+
+.footer-left{
+
+    color:#7a7a7a;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+/* FOOTER RIGHT */
+
+.footer-right{
+
+    color:#7a7a7a;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    nav{
+
+        height:84px;
+
+        padding:0 14px;
+
+    }
+
+    .logo span{
+
+        font-size:26px;
+
+    }
+
+    .logo img{
+
+        width:50px;
+        height:50px;
+
+    }
+
+    .lang-btn{
+
+        width:58px;
+        height:58px;
+
+        font-size:20px;
+
+        border-radius:18px;
+
+    }
+
+    .hero-logo{
+
+        width:145px;
+        height:145px;
+
+    }
+
+    .hero p{
+
+        font-size:19px;
+
+    }
+
+    .btn{
+
+        height:84px;
+
+        font-size:22px;
+
+    }
+
+}
+
+</style>
+
 </head>
 <body>
 
-<div class="bg-base"></div>
-<div class="bg-grid"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
+<div class="bg"></div>
+<div class="grid"></div>
 
-<!-- ════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════ -->
-<nav class="navbar" id="navbar">
+<!-- NAVBAR -->
 
-  <!-- Логотип -->
-  <span class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">
-    <span class="logo-dot"></span>
-    Vortex Client
-  </span>
+<nav>
 
-  <!-- Центральные ссылки -->
-  <ul class="nav-center" id="navCenter">
-    <li><a href="#hero"        data-i18n="nav0">Главная</a></li>
-    <li><a href="#features"    data-i18n="nav1">Функции</a></li>
-    <li><a href="#video"       data-i18n="nav2">Видеообзор</a></li>
-    <li><a href="#pricing"     data-i18n="nav3">Купить</a></li>
-    <li><a href="#support"     data-i18n="nav4">Поддержка</a></li>
-  </ul>
+<div class="logo">
 
-  <!-- Правая часть: язык + кнопка купить + гамбургер -->
-  <div class="nav-right">
+<img src="icon.png">
 
-    <!-- Выбор языка -->
-    <div class="lang-selector" id="langSelector">
-      <button class="lang-btn" id="langBtn" onclick="toggleLangDropdown()">
-        <span id="langFlag">🇷🇺</span>
-        <span id="langLabel">RU</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="6,9 12,15 18,9"></polyline>
-        </svg>
-      </button>
-      <div class="lang-dropdown" id="langDropdown"></div>
-    </div>
+<span>CodeDLC</span>
 
-    <a href="#pricing" class="nav-buy" data-i18n="navBuy">Купить</a>
+</div>
 
-    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
+<div class="lang-box">
 
-  </div>
+<button class="lang-btn active"
+id="ruBtn"
+onclick="setLang('ru')">
+RU
+</button>
+
+<button class="lang-btn"
+id="enBtn"
+onclick="setLang('en')">
+EN
+</button>
+
+</div>
+
 </nav>
 
-<!-- Мобильное меню -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#hero"     onclick="closeMobileMenu()" data-mob-i18n="nav0">Главная</a>
-  <a href="#features" onclick="closeMobileMenu()" data-mob-i18n="nav1">Функции</a>
-  <a href="#video"    onclick="closeMobileMenu()" data-mob-i18n="nav2">Видеообзор</a>
-  <a href="#pricing"  onclick="closeMobileMenu()" data-mob-i18n="nav3">Купить</a>
-  <a href="#support"  onclick="closeMobileMenu()" data-mob-i18n="nav4">Поддержка</a>
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-logo">
+
+<img src="icon.png">
+
 </div>
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
-<section id="hero" style="padding:0;">
-  <div class="hero">
-    <div class="hero-inner">
+<div class="version">
+CodeDLC - 1.21.4
+</div>
 
-      <!-- Левая часть: текст -->
-      <div class="hero-left">
+<h1>
+CodeDLC
+</h1>
 
-        <div class="hero-eyebrow anim-up">
-          <span class="hero-eyebrow-line"></span>
-          Minecraft Client 2026
-        </div>
+<p id="heroText">
+Лучший бесплатный клиент на 1.21.4 с обходами на крупные сервера и с лучшей оптимизацией.
+</p>
 
-        <h1 class="anim-up-2">
-          <span class="hero-title-static">Vortex</span>
-          <span class="hero-title-accent">Client</span>
-        </h1>
+<div class="buttons">
 
-        <p class="hero-tagline anim-up-2" id="heroTagline">
-          Превосходство. Скорость. Победа.
-        </p>
+<a href="https://workupload.com/file/D2pQwxxdq4T"
+target="_blank"
+class="btn btn-download"
+id="downloadText">
+Скачать
+</a>
 
-        <p class="hero-desc anim-up-3" id="heroQuote">
-          Мы не просто клиент — мы стиль игры.
-        </p>
+<a href="https://t.me/CodeDLC0"
+target="_blank"
+class="btn btn-tg"
+id="telegramText">
+Telegram
+</a>
 
-        <div class="hero-actions anim-up-4">
-          <a href="#pricing" class="btn btn-primary" id="heroBtnBuy">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <path d="M16 10a4 4 0 01-8 0"/>
-            </svg>
-            Купить сейчас
-          </a>
-          <a href="#features" class="btn btn-outline" id="heroBtnLearn">
-            Узнать больше
-          </a>
-        </div>
+</div>
 
-      </div>
+</div>
 
-      <!-- Правая часть: видео -->
-      <div class="hero-right anim-right">
-        <div class="hero-video-frame" id="heroVideoFrame">
-          <div class="hero-video-placeholder" id="heroVideoPlaceholder">
-            <div class="play-icon-wrap">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-            <p id="heroVideoHint">Видео скоро появится</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Подсказка прокрутки -->
-    <div class="scroll-hint">
-      <span data-i18n="scrollDown">Прокрутите вниз</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="6,9 12,15 18,9"></polyline>
-      </svg>
-    </div>
-  </div>
 </section>
 
-<div class="divider"></div>
+<!-- FOOTER -->
 
-<!-- ════════════════════════════════════════
-     FEATURES
-════════════════════════════════════════ -->
-<section id="features">
-  <div class="container">
+<footer>
 
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Преимущества</div>
-      <h2 class="section-title" data-i18n="sectionFeatures">Наши преимущества</h2>
-      <p class="section-subtitle" data-i18n="featuresSubtitle">
-        Всё, что вы гарантированно получите после покупки нашего клиента.
-      </p>
-    </div>
+<div class="footer-left">
+CodeDLC - 1.21.4
+</div>
 
-    <div class="features-grid" id="featuresGrid">
-      <!-- Генерируется в script.js → buildFeatures() -->
-    </div>
+<div class="footer-right">
+v1.4.0
+</div>
 
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════
-     ВИДЕООБЗОР
-     Слева — заголовок и описание
-     Справа — плеер
-════════════════════════════════════════ -->
-<section id="video">
-  <div class="container">
-    <div class="video-section-container">
-
-      <!-- Левая часть: описание -->
-      <div class="reveal">
-        <div class="section-eyebrow">Видеообзор</div>
-        <h2 class="section-title" data-i18n="sectionVideo">Видеообзор</h2>
-        <p class="section-subtitle" data-i18n="videoSubtitle">
-          Посмотрите на реальный геймплей с нашим клиентом.
-        </p>
-
-        <div class="video-bullets">
-          <div class="video-bullet">
-            <div class="video-bullet-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-            </div>
-            <span class="video-bullet-text" data-i18n="videoBullet1">Реальный геймплей без монтажа</span>
-          </div>
-          <div class="video-bullet">
-            <div class="video-bullet-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-            </div>
-            <span class="video-bullet-text" data-i18n="videoBullet2">Демонстрация всех ключевых функций</span>
-          </div>
-          <div class="video-bullet">
-            <div class="video-bullet-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20,6 9,17 4,12"/>
-              </svg>
-            </div>
-            <span class="video-bullet-text" data-i18n="videoBullet3">Настройки интерфейса в деталях</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Правая часть: плеер -->
-      <div class="reveal reveal-d2">
-        <div class="video-embed-wrap" id="videoContainer">
-          <div class="video-embed-placeholder">
-            <div class="play-icon-wrap">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;color:var(--primary-light);margin-left:3px;">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-            <p id="videoPlaceholderText">Видео скоро появится здесь</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════
-     СКРИНШОТЫ
-════════════════════════════════════════ -->
-<section id="screenshots">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Галерея</div>
-      <h2 class="section-title" data-i18n="sectionScreenshots">Скриншоты</h2>
-      <p class="section-subtitle" data-i18n="screenshotsSubtitle">
-        Несколько снимков прямо из игры с нашим клиентом.
-      </p>
-    </div>
-
-    <div class="screenshots-grid" id="screenshotsGrid">
-      <!-- Генерируется в script.js → buildScreenshots() -->
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════
-     ТАРИФЫ
-════════════════════════════════════════ -->
-<section id="pricing">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Тарифы</div>
-      <h2 class="section-title" data-i18n="sectionPricing">Тарифы</h2>
-      <p class="section-subtitle" data-i18n="pricingSubtitle">
-        Выберите подходящий план. Все планы включают полный доступ к функционалу.
-      </p>
-    </div>
-
-    <div class="pricing-grid" id="pricingGrid">
-      <!-- Генерируется в script.js → buildPricing() -->
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════
-     ПОДДЕРЖКА
-════════════════════════════════════════ -->
-<section id="support">
-  <div class="container">
-
-    <div class="section-header reveal" style="text-align:center;">
-      <div class="section-eyebrow" style="justify-content:center;">Контакты</div>
-      <h2 class="section-title" data-i18n="sectionSupport">Поддержка</h2>
-      <p class="section-subtitle" data-i18n="supportSubtitle" style="margin:0 auto;">
-        Есть вопросы? Мы всегда рады помочь.
-      </p>
-    </div>
-
-    <div class="support-grid">
-
-      <!-- Email -->
-      <a class="support-card reveal reveal-d1" id="supportEmailCard" href="#">
-        <div class="support-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <rect x="2" y="4" width="20" height="16" rx="2.5"/>
-            <path d="M2 7l10 7 10-7"/>
-          </svg>
-        </div>
-        <div class="support-label" data-i18n="supportEmail">Почта для связи</div>
-        <div class="support-value" id="supportEmailVal"></div>
-        <div class="support-hours" id="supportHoursVal"></div>
-      </a>
-
-      <!-- Discord -->
-      <a class="support-card reveal reveal-d2" id="supportDiscordCard" href="#" target="_blank" rel="noopener">
-        <div class="support-icon">
-          <!-- Discord icon (монохромный SVG) -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--primary-light);">
-            <path d="M9 11.5a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/>
-            <path d="M19.27 5.33A17.75 17.75 0 0014.94 4c-.18.33-.38.77-.52 1.12a16.36 16.36 0 00-4.84 0A11.2 11.2 0 009.06 4 17.8 17.8 0 004.73 5.33C2.02 9.46 1.27 13.48 1.65 17.45A17.87 17.87 0 007.1 20c.42-.57.79-1.17 1.11-1.81a11.6 11.6 0 01-1.74-.84l.42-.33a12.73 12.73 0 0010.22 0l.43.33c-.55.33-1.14.61-1.75.84.32.64.69 1.24 1.11 1.81a17.83 17.83 0 005.45-2.55c.44-4.53-.75-8.52-3.08-12.17z"/>
-          </svg>
-        </div>
-        <div class="support-label" data-i18n="supportDiscord">Discord</div>
-        <div class="support-value">Discord Server</div>
-      </a>
-
-      <!-- Telegram -->
-      <a class="support-card reveal reveal-d3" id="supportTelegramCard" href="#" target="_blank" rel="noopener">
-        <div class="support-icon">
-          <!-- Telegram icon (монохромный SVG) -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--primary-light);">
-            <path d="M21.5 3.5L2.5 10.5l6.5 2 2 6.5 3-4 5.5 4z"/>
-            <path d="M9 12.5l9-9"/>
-          </svg>
-        </div>
-        <div class="support-label" data-i18n="supportTelegram">Telegram</div>
-        <div class="support-value">Telegram Channel</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════ -->
-<footer class="footer">
-  <div class="footer-inner">
-
-    <!-- Брендинг -->
-    <div class="footer-brand">
-      <div class="footer-brand-name">
-        <span class="logo-dot"></span>
-        Vortex Client
-      </div>
-      <p class="footer-tagline" id="footerTagline">Превосходство. Скорость. Победа.</p>
-    </div>
-
-    <!-- Навигация -->
-    <div class="footer-col">
-      <h4 data-i18n="footerNav">Навигация</h4>
-      <ul>
-        <li><a href="#hero"     data-i18n="nav0">Главная</a></li>
-        <li><a href="#features" data-i18n="nav1">Функции</a></li>
-        <li><a href="#video"    data-i18n="nav2">Видеообзор</a></li>
-        <li><a href="#pricing"  data-i18n="nav3">Купить</a></li>
-        <li><a href="#support"  data-i18n="nav4">Поддержка</a></li>
-      </ul>
-    </div>
-
-    <!-- Документы -->
-    <div class="footer-col">
-      <h4 data-i18n="footerLegal">Документы</h4>
-      <ul>
-        <li><a onclick="openModal('privacy')" data-i18n="footerPrivacy">Обработка персональных данных</a></li>
-        <li><a onclick="openModal('terms')"   data-i18n="footerTerms">Пользовательское соглашение</a></li>
-        <li><a onclick="openModal('rules')"   data-i18n="footerRules">Правила пользования</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p id="footerCopy"></p>
-    <div class="footer-socials">
-      <a href="#" id="footerDiscord" target="_blank">Discord</a>
-      <a href="#" id="footerTelegram" target="_blank">Telegram</a>
-    </div>
-  </div>
 </footer>
 
-<!-- ════════════════════════════════════════
-     LEGAL MODALS
-════════════════════════════════════════ -->
+<script>
 
-<!-- Политика персональных данных -->
-<div class="modal-overlay" id="modalPrivacy" onclick="closeModalOutside(event,'modalPrivacy')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 data-i18n="footerPrivacy">Обработка персональных данных</h3>
-      <button class="modal-close" onclick="closeModal('privacy')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-placeholder">
-        <div class="modal-placeholder-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
-        <p data-i18n="modalPrivacyDesc">
-          Политика обработки персональных данных будет опубликована в ближайшее время.
-        </p>
-        <code class="modal-hint">config.js → legal.privacy</code>
-      </div>
-    </div>
-  </div>
-</div>
+function setLang(lang){
 
-<!-- Пользовательское соглашение -->
-<div class="modal-overlay" id="modalTerms" onclick="closeModalOutside(event,'modalTerms')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 data-i18n="footerTerms">Пользовательское соглашение</h3>
-      <button class="modal-close" onclick="closeModal('terms')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-placeholder">
-        <div class="modal-placeholder-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-            <polyline points="14,2 14,8 20,8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
-        </div>
-        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
-        <p data-i18n="modalTermsDesc">
-          Пользовательское соглашение будет опубликовано в ближайшее время.
-        </p>
-        <code class="modal-hint">config.js → legal.terms</code>
-      </div>
-    </div>
-  </div>
-</div>
+    const ruBtn =
+    document.getElementById("ruBtn");
 
-<!-- Правила пользования -->
-<div class="modal-overlay" id="modalRules" onclick="closeModalOutside(event,'modalRules')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 data-i18n="footerRules">Правила пользования</h3>
-      <button class="modal-close" onclick="closeModal('rules')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-placeholder">
-        <div class="modal-placeholder-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-        </div>
-        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
-        <p data-i18n="modalRulesDesc">
-          Правила пользования сервисом будут опубликованы в ближайшее время.
-        </p>
-        <code class="modal-hint">config.js → legal.rules</code>
-      </div>
-    </div>
-  </div>
-</div>
+    const enBtn =
+    document.getElementById("enBtn");
 
-<!-- ── Попап оплаты (активируется через config.js → payment.usePopup = true) ── -->
-<div class="modal-overlay" id="modalPayment" onclick="closeModalOutside(event,'modalPayment')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 id="paymentPopupTitle">Оформление покупки</h3>
-      <button class="modal-close" onclick="closeModal('payment')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="payment-popup-content">
-        <p id="paymentPopupBody">Для оформления покупки свяжитесь с нами:</p>
-        <a id="paymentPopupLink" href="#" target="_blank" rel="noopener" class="payment-popup-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M21.5 3.5L2.5 10.5l6.5 2 2 6.5 3-4 5.5 4z"/>
-          </svg>
-          Написать нам
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+    ruBtn.classList.remove("active");
+    enBtn.classList.remove("active");
 
-<!-- ── TOAST ── -->
-<div class="toast" id="toast">
-  <span id="toastMsg"></span>
-</div>
+    if(lang === "ru"){
 
-<script src="config.js"></script>
-<script src="script.js"></script>
+        ruBtn.classList.add("active");
+
+        document.getElementById("heroText").innerText =
+        "Лучший бесплатный клиент на 1.21.4 с обходами на крупные сервера и с лучшей оптимизацией.";
+
+        document.getElementById("downloadText").innerText =
+        "Скачать";
+
+        document.getElementById("telegramText").innerText =
+        "Telegram";
+
+        document.documentElement.lang = "ru";
+
+    }
+
+    if(lang === "en"){
+
+        enBtn.classList.add("active");
+
+        document.getElementById("heroText").innerText =
+        "The best free client for 1.21.4 with bypasses on large servers and the best optimization.";
+
+        document.getElementById("downloadText").innerText =
+        "Download";
+
+        document.getElementById("telegramText").innerText =
+        "Telegram";
+
+        document.documentElement.lang = "en";
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>
