@@ -1,1479 +1,513 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CodeDLC</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-
-/* ========================= */
-/* ROOT */
-/* ========================= */
-
-:root{
-
-    --main:#8b5cf6;
-    --main-dark:#6d28d9;
-
-    --bg:#050507;
-
-    --glass:rgba(255,255,255,.05);
-    --glass2:rgba(255,255,255,.03);
-
-    --border:rgba(255,255,255,.08);
-
-    --text:#ffffff;
-    --gray:#b8b8b8;
-
-}
-
-/* ========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-}
-
-body{
-
-    font-family:'Montserrat',sans-serif;
-
-    background:var(--bg);
-
-    color:white;
-
-    overflow-x:hidden;
-
-}
-
-/* ========================= */
-/* BACKGROUND */
-/* ========================= */
-
-.bg{
-
-    position:fixed;
-    inset:0;
-
-    z-index:-5;
-
-    background:
-    radial-gradient(circle at top left,
-    rgba(139,92,246,.35),
-    transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    rgba(139,92,246,.18),
-    transparent 35%),
-
-    #050507;
-
-}
-
-.grid{
-
-    position:fixed;
-    inset:0;
-
-    z-index:-4;
-
-    background-image:
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-
-    background-size:40px 40px;
-
-}
-
-.blur1,
-.blur2{
-
-    position:fixed;
-
-    border-radius:50%;
-
-    filter:blur(120px);
-
-    z-index:-3;
-
-}
-
-.blur1{
-
-    width:400px;
-    height:400px;
-
-    background:#8b5cf6;
-
-    top:-100px;
-    left:-100px;
-
-    opacity:.28;
-
-}
-
-.blur2{
-
-    width:300px;
-    height:300px;
-
-    background:#6d28d9;
-
-    bottom:-100px;
-    right:-100px;
-
-    opacity:.18;
-
-}
-
-/* ========================= */
-/* GLASS */
-/* ========================= */
-
-.glass{
-
-    background:var(--glass);
-
-    backdrop-filter:blur(25px);
-
-    -webkit-backdrop-filter:blur(25px);
-
-    border:1px solid var(--border);
-
-    box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.04),
-    0 0 30px rgba(139,92,246,.08);
-
-}
-
-/* ========================= */
-/* NAVBAR */
-/* ========================= */
-
-nav{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:82px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 20px;
-
-    z-index:999;
-
-    background:
-    rgba(10,10,15,.72);
-
-    backdrop-filter:blur(20px);
-
-    border-bottom:
-    1px solid rgba(255,255,255,.05);
-
-}
-
-/* ========================= */
-/* LOGO */
-/* ========================= */
-
-.logo{
-
-    font-size:34px;
-
-    font-weight:900;
-
-    color:#8b5cf6;
-
-    letter-spacing:1px;
-
-    flex-shrink:0;
-
-    text-shadow:
-    0 0 20px rgba(139,92,246,.45);
-
-}
-
-/* ========================= */
-/* NAV LINKS */
-/* ========================= */
-
-.nav-links{
-
-    display:flex;
-
-    gap:35px;
-
-}
-
-.nav-links a{
-
-    color:#d0d0d0;
-
-    text-decoration:none;
-
-    font-weight:700;
-
-    transition:.3s;
-
-}
-
-.nav-links a:hover{
-
-    color:#8b5cf6;
-
-}
-
-/* ========================= */
-/* RIGHT */
-/* ========================= */
-
-.mobile-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    margin-left:auto;
-
-}
-
-/* ========================= */
-/* LANGUAGE */
-/* ========================= */
-
-.lang-switch{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-}
-
-.lang-btn{
-
-    width:48px;
-    height:48px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    color:white;
-
-    font-size:14px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    backdrop-filter:blur(20px);
-
-    flex-shrink:0;
-
-}
-
-.lang-btn.active{
-
-    background:#8b5cf6;
-
-    border-color:transparent;
-
-    box-shadow:
-    0 0 20px rgba(139,92,246,.35);
-
-}
-
-/* ========================= */
-/* LOGIN */
-/* ========================= */
-
-.login-btn-nav{
-
-    height:48px;
-
-    padding:0 22px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#8b5cf6;
-
-    color:white;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:
-    0 0 20px rgba(139,92,246,.35);
-
-}
-
-.login-btn-nav:hover{
-
-    background:#6d28d9;
-
-    transform:translateY(-2px);
-
-}
-
-/* ========================= */
-/* HERO */
-/* ========================= */
-
-.hero{
-
-    min-height:100vh;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:
-    140px 20px
-    80px;
-
-}
-
-.hero-content{
-
-    width:100%;
-    max-width:1000px;
-
-}
-
-.version{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:14px 24px;
-
-    border-radius:999px;
-
-    margin-bottom:35px;
-
-    font-size:14px;
-
-    font-weight:800;
-
-}
-
-.version::before{
-
-    content:'⬤';
-
-    color:#8b5cf6;
-
-    font-size:11px;
-
-}
-
-.hero h1{
-
-    font-size:
-    clamp(70px,10vw,180px);
-
-    line-height:.95;
-
-    margin-bottom:25px;
-
-    font-weight:900;
-
-    color:#8b5cf6;
-
-    text-shadow:
-    0 0 35px rgba(139,92,246,.55),
-    0 0 70px rgba(139,92,246,.22);
-
-}
-
-.hero p{
-
-    font-size:22px;
-
-    line-height:1.8;
-
-    color:var(--gray);
-
-    font-weight:600;
-
-    max-width:900px;
-
-    margin:auto;
-
-}
-
-/* ========================= */
-/* BUTTONS */
-/* ========================= */
-
-.buttons{
-
-    margin-top:45px;
-
-    display:flex;
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-.btn{
-
-    padding:18px 38px;
-
-    border-radius:22px;
-
-    text-decoration:none;
-
-    font-weight:800;
-
-    transition:.35s;
-
-}
-
-.btn-primary{
-
-    background:#8b5cf6;
-
-    color:white;
-
-    box-shadow:
-    0 0 25px rgba(139,92,246,.45);
-
-}
-
-.btn-primary:hover{
-
-    background:#6d28d9;
-
-    transform:translateY(-5px);
-
-}
-
-.btn-secondary{
-
-    background:var(--glass);
-
-    border:1px solid var(--border);
-
-    color:white;
-
-    backdrop-filter:blur(20px);
-
-}
-
-.btn-secondary:hover{
-
-    transform:translateY(-5px);
-
-    border-color:#8b5cf6;
-
-}
-
-/* ========================= */
-/* FEATURES */
-/* ========================= */
-
-.features{
-
-    padding:100px 20px;
-
-}
-
-.section-title{
-
-    text-align:center;
-
-    font-size:54px;
-
-    font-weight:900;
-
-    margin-bottom:60px;
-
-}
-
-.cards{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:25px;
-
-    max-width:1300px;
-
-    margin:auto;
-
-}
-
-.card{
-
-    padding:35px;
-
-    border-radius:30px;
-
-    transition:.35s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-    border-color:#8b5cf6;
-
-    box-shadow:
-    0 0 30px rgba(139,92,246,.18);
-
-}
-
-.card-icon{
-
-    width:70px;
-    height:70px;
-
-    border-radius:22px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-    rgba(139,92,246,.15);
-
-    margin-bottom:25px;
-
-    font-size:30px;
-
-}
-
-.card h3{
-
-    font-size:30px;
-
-    margin-bottom:18px;
-
-    font-weight:900;
-
-}
-
-.card p{
-
-    color:var(--gray);
-
-    line-height:1.8;
-
-    font-weight:600;
-
-}
-
-/* ========================= */
-/* CLIENT */
-/* ========================= */
-
-.client{
-
-    padding:100px 20px;
-
-}
-
-.client-box{
-
-    max-width:1300px;
-
-    margin:auto;
-
-    display:flex;
-
-    border-radius:35px;
-
-    overflow:hidden;
-
-}
-
-.sidebar{
-
-    width:280px;
-
-    padding:30px;
-
-    border-right:
-    1px solid rgba(255,255,255,.05);
-
-}
-
-.sidebar button{
-
-    width:100%;
-
-    padding:18px;
-
-    margin-bottom:15px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border:
-    1px solid rgba(255,255,255,.05);
-
-    color:white;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.sidebar button.active,
-.sidebar button:hover{
-
-    background:#8b5cf6;
-
-}
-
-.content{
-
-    flex:1;
-
-    padding:45px;
-
-}
-
-.tab{
-
-    display:none;
-
-}
-
-.tab.active{
-
-    display:block;
-
-}
-
-.tab h2{
-
-    font-size:44px;
-
-    margin-bottom:20px;
-
-    font-weight:900;
-
-}
-
-.tab p{
-
-    color:var(--gray);
-
-    line-height:1.8;
-
-    font-size:18px;
-
-    font-weight:600;
-
-}
-
-/* ========================= */
-/* AUTH */
-/* ========================= */
-
-.auth-panel{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.55);
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    z-index:2000;
-
-    padding:20px;
-
-}
-
-.auth-box{
-
-    width:100%;
-    max-width:450px;
-
-    padding:40px;
-
-    border-radius:35px;
-
-}
-
-.auth-box h2{
-
-    text-align:center;
-
-    font-size:42px;
-
-    margin-bottom:30px;
-
-    font-weight:900;
-
-}
-
-.input-box{
-
-    margin-bottom:20px;
-
-}
-
-.input-box input{
-
-    width:100%;
-
-    padding:18px 20px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:18px;
-
-    background:
-    rgba(255,255,255,.05);
-
-    border:
-    1px solid rgba(255,255,255,.06);
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:700;
-
-}
-
-.auth-btn{
-
-    width:100%;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:#8b5cf6;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.auth-btn:hover{
-
-    background:#6d28d9;
-
-}
-
-.auth-switch{
-
-    margin-top:20px;
-
-    text-align:center;
-
-    color:#bdbdbd;
-
-}
-
-.auth-switch span{
-
-    color:#8b5cf6;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-}
-
-/* ========================= */
-/* MOBILE */
-/* ========================= */
-
-@media(max-width:900px){
-
-    nav{
-
-        padding:0 14px;
-
-    }
-
-    .nav-links{
-
-        display:none;
-
-    }
-
-    .logo{
-
-        font-size:28px;
-
-    }
-
-    .mobile-actions{
-
-        gap:8px;
-
-    }
-
-    .lang-btn{
-
-        width:42px;
-        height:42px;
-
-        border-radius:14px;
-
-        font-size:13px;
-
-    }
-
-    .login-btn-nav{
-
-        height:42px;
-
-        padding:0 16px;
-
-        border-radius:14px;
-
-        font-size:14px;
-
-    }
-
-    .hero{
-
-        padding-top:120px;
-
-    }
-
-    .hero h1{
-
-        font-size:68px;
-
-    }
-
-    .hero p{
-
-        font-size:16px;
-
-        line-height:1.7;
-
-    }
-
-    .buttons{
-
-        flex-direction:column;
-
-        width:100%;
-
-    }
-
-    .btn{
-
-        width:100%;
-
-        height:64px;
-
-        display:flex;
-        align-items:center;
-        justify-content:center;
-
-        font-size:18px;
-
-    }
-
-    .section-title{
-
-        font-size:38px;
-
-    }
-
-    .client-box{
-
-        flex-direction:column;
-
-    }
-
-    .sidebar{
-
-        width:100%;
-
-        border-right:none;
-
-        border-bottom:
-        1px solid rgba(255,255,255,.05);
-
-    }
-
-    .content{
-
-        padding:30px;
-
-    }
-
-    .tab h2{
-
-        font-size:34px;
-
-    }
-
-}
-
-/* ========================= */
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeDLC - 1.21.4</title>
+  <meta name="description" content="CodeDLC - New Era" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="bg"></div>
-<div class="grid"></div>
-<div class="blur1"></div>
-<div class="blur2"></div>
+<div class="bg-base"></div>
+<div class="bg-grid"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- NAVBAR -->
+<!-- ════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
 
-<nav>
+  <!-- Логотип -->
+  <span class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">
+    <span class="logo-dot"></span>
+    Vortex Client
+  </span>
 
-<div class="logo">
-CodeDLC
-</div>
+  <!-- Центральные ссылки -->
+  <ul class="nav-center" id="navCenter">
+    <li><a href="#hero"        data-i18n="nav0">Главная</a></li>
+    <li><a href="#features"    data-i18n="nav1">Функции</a></li>
+    <li><a href="#video"       data-i18n="nav2">Видеообзор</a></li>
+    <li><a href="#pricing"     data-i18n="nav3">Купить</a></li>
+    <li><a href="#support"     data-i18n="nav4">Поддержка</a></li>
+  </ul>
 
-<div class="nav-links">
+  <!-- Правая часть: язык + кнопка купить + гамбургер -->
+  <div class="nav-right">
 
-<a href="#home">Главная</a>
-<a href="#features">Функции</a>
-<a href="#client">Клиент</a>
+    <!-- Выбор языка -->
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangDropdown()">
+        <span id="langFlag">🇷🇺</span>
+        <span id="langLabel">RU</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6,9 12,15 18,9"></polyline>
+        </svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown"></div>
+    </div>
 
-</div>
+    <a href="#pricing" class="nav-buy" data-i18n="navBuy">Купить</a>
 
-<div class="mobile-actions">
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
 
-<div class="lang-switch">
-
-<button class="lang-btn active"
-onclick="setLanguage('ru',this)">
-RU
-</button>
-
-<button class="lang-btn"
-onclick="setLanguage('en',this)">
-EN
-</button>
-
-</div>
-
-<button class="login-btn-nav"
-onclick="openAuth()">
-Login
-</button>
-
-</div>
-
+  </div>
 </nav>
 
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-<div class="hero-content">
-
-<div class="version glass">
-Minecraft 1.21.4
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero"     onclick="closeMobileMenu()" data-mob-i18n="nav0">Главная</a>
+  <a href="#features" onclick="closeMobileMenu()" data-mob-i18n="nav1">Функции</a>
+  <a href="#video"    onclick="closeMobileMenu()" data-mob-i18n="nav2">Видеообзор</a>
+  <a href="#pricing"  onclick="closeMobileMenu()" data-mob-i18n="nav3">Купить</a>
+  <a href="#support"  onclick="closeMobileMenu()" data-mob-i18n="nav4">Поддержка</a>
 </div>
 
-<h1>
-CodeDLC
-</h1>
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="hero" style="padding:0;">
+  <div class="hero">
+    <div class="hero-inner">
 
-<p id="heroText">
-CodeDLC — современный visual client
-для Minecraft 1.21.4.
-Премиальный glass интерфейс,
-плавные анимации и максимальный FPS.
-</p>
+      <!-- Левая часть: текст -->
+      <div class="hero-left">
 
-<div class="buttons">
+        <div class="hero-eyebrow anim-up">
+          <span class="hero-eyebrow-line"></span>
+          Minecraft Client 2026
+        </div>
 
-<a href="#" class="btn btn-primary">
-Download Client
-</a>
+        <h1 class="anim-up-2">
+          <span class="hero-title-static">Vortex</span>
+          <span class="hero-title-accent">Client</span>
+        </h1>
 
-<a href="https://t.me/CodeDLC0"
-class="btn btn-secondary">
-Telegram
-</a>
+        <p class="hero-tagline anim-up-2" id="heroTagline">
+          Превосходство. Скорость. Победа.
+        </p>
 
-</div>
+        <p class="hero-desc anim-up-3" id="heroQuote">
+          Мы не просто клиент — мы стиль игры.
+        </p>
 
-</div>
+        <div class="hero-actions anim-up-4">
+          <a href="#pricing" class="btn btn-primary" id="heroBtnBuy">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Купить сейчас
+          </a>
+          <a href="#features" class="btn btn-outline" id="heroBtnLearn">
+            Узнать больше
+          </a>
+        </div>
 
+      </div>
+
+      <!-- Правая часть: видео -->
+      <div class="hero-right anim-right">
+        <div class="hero-video-frame" id="heroVideoFrame">
+          <div class="hero-video-placeholder" id="heroVideoPlaceholder">
+            <div class="play-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p id="heroVideoHint">Видео скоро появится</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Подсказка прокрутки -->
+    <div class="scroll-hint">
+      <span data-i18n="scrollDown">Прокрутите вниз</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6,9 12,15 18,9"></polyline>
+      </svg>
+    </div>
+  </div>
 </section>
 
-<!-- FEATURES -->
+<div class="divider"></div>
 
-<section class="features" id="features">
+<!-- ════════════════════════════════════════
+     FEATURES
+════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
 
-<h2 class="section-title"
-id="featuresTitle">
-Функции клиента
-</h2>
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Преимущества</div>
+      <h2 class="section-title" data-i18n="sectionFeatures">Наши преимущества</h2>
+      <p class="section-subtitle" data-i18n="featuresSubtitle">
+        Всё, что вы гарантированно получите после покупки нашего клиента.
+      </p>
+    </div>
 
-<div class="cards">
+    <div class="features-grid" id="featuresGrid">
+      <!-- Генерируется в script.js → buildFeatures() -->
+    </div>
 
-<div class="card glass">
-
-<div class="card-icon">
-🚀
-</div>
-
-<h3>
-FPS Boost
-</h3>
-
-<p>
-Максимальная оптимизация
-и плавность Minecraft.
-</p>
-
-</div>
-
-<div class="card glass">
-
-<div class="card-icon">
-✨
-</div>
-
-<h3>
-Liquid Glass UI
-</h3>
-
-<p>
-Интерфейс в стиле
-жидкого стекла.
-</p>
-
-</div>
-
-<div class="card glass">
-
-<div class="card-icon">
-⚔️
-</div>
-
-<h3>
-PvP Features
-</h3>
-
-<p>
-Hit-анимации
-и PvP функции.
-</p>
-
-</div>
-
-<div class="card glass">
-
-<div class="card-icon">
-🌍
-</div>
-
-<h3>
-RU / EN
-</h3>
-
-<p>
-Поддержка
-двух языков.
-</p>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<!-- CLIENT -->
+<div class="divider"></div>
 
-<section class="client"
-id="client">
+<!-- ════════════════════════════════════════
+     ВИДЕООБЗОР
+     Слева — заголовок и описание
+     Справа — плеер
+════════════════════════════════════════ -->
+<section id="video">
+  <div class="container">
+    <div class="video-section-container">
 
-<h2 class="section-title">
-Client Menu
-</h2>
+      <!-- Левая часть: описание -->
+      <div class="reveal">
+        <div class="section-eyebrow">Видеообзор</div>
+        <h2 class="section-title" data-i18n="sectionVideo">Видеообзор</h2>
+        <p class="section-subtitle" data-i18n="videoSubtitle">
+          Посмотрите на реальный геймплей с нашим клиентом.
+        </p>
 
-<div class="client-box glass">
+        <div class="video-bullets">
+          <div class="video-bullet">
+            <div class="video-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+            </div>
+            <span class="video-bullet-text" data-i18n="videoBullet1">Реальный геймплей без монтажа</span>
+          </div>
+          <div class="video-bullet">
+            <div class="video-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+            </div>
+            <span class="video-bullet-text" data-i18n="videoBullet2">Демонстрация всех ключевых функций</span>
+          </div>
+          <div class="video-bullet">
+            <div class="video-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+            </div>
+            <span class="video-bullet-text" data-i18n="videoBullet3">Настройки интерфейса в деталях</span>
+          </div>
+        </div>
+      </div>
 
-<div class="sidebar">
+      <!-- Правая часть: плеер -->
+      <div class="reveal reveal-d2">
+        <div class="video-embed-wrap" id="videoContainer">
+          <div class="video-embed-placeholder">
+            <div class="play-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;color:var(--primary-light);margin-left:3px;">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p id="videoPlaceholderText">Видео скоро появится здесь</p>
+          </div>
+        </div>
+      </div>
 
-<button class="tab-btn active"
-onclick="openTab(event,'visual')">
-Visual
-</button>
-
-<button class="tab-btn"
-onclick="openTab(event,'fps')">
-FPS
-</button>
-
-<button class="tab-btn"
-onclick="openTab(event,'pvp')">
-PvP
-</button>
-
-<button class="tab-btn"
-onclick="openTab(event,'settings')">
-Settings
-</button>
-
-</div>
-
-<div class="content">
-
-<div class="tab active"
-id="visual">
-
-<h2>
-Visual System
-</h2>
-
-<p>
-Glass интерфейс,
-blur эффекты
-и плавные анимации.
-</p>
-
-</div>
-
-<div class="tab"
-id="fps">
-
-<h2>
-FPS Boost
-</h2>
-
-<p>
-Оптимизация рендера
-и повышение FPS.
-</p>
-
-</div>
-
-<div class="tab"
-id="pvp">
-
-<h2>
-PvP Features
-</h2>
-
-<p>
-Combat функции
-и кастомные hit-анимации.
-</p>
-
-</div>
-
-<div class="tab"
-id="settings">
-
-<h2>
-Client Settings
-</h2>
-
-<p>
-Настройка интерфейса,
-цветов и клиента.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+    </div>
+  </div>
 </section>
 
-<!-- AUTH -->
+<div class="divider"></div>
 
-<div class="auth-panel"
-id="authPanel">
+<!-- ════════════════════════════════════════
+     СКРИНШОТЫ
+════════════════════════════════════════ -->
+<section id="screenshots">
+  <div class="container">
 
-<div class="auth-box glass">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Галерея</div>
+      <h2 class="section-title" data-i18n="sectionScreenshots">Скриншоты</h2>
+      <p class="section-subtitle" data-i18n="screenshotsSubtitle">
+        Несколько снимков прямо из игры с нашим клиентом.
+      </p>
+    </div>
 
-<h2 id="authTitle">
-Авторизация
-</h2>
+    <div class="screenshots-grid" id="screenshotsGrid">
+      <!-- Генерируется в script.js → buildScreenshots() -->
+    </div>
 
-<div class="input-box">
+  </div>
+</section>
 
-<input type="text"
-placeholder="Login">
+<div class="divider"></div>
 
+<!-- ════════════════════════════════════════
+     ТАРИФЫ
+════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Тарифы</div>
+      <h2 class="section-title" data-i18n="sectionPricing">Тарифы</h2>
+      <p class="section-subtitle" data-i18n="pricingSubtitle">
+        Выберите подходящий план. Все планы включают полный доступ к функционалу.
+      </p>
+    </div>
+
+    <div class="pricing-grid" id="pricingGrid">
+      <!-- Генерируется в script.js → buildPricing() -->
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     ПОДДЕРЖКА
+════════════════════════════════════════ -->
+<section id="support">
+  <div class="container">
+
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;">Контакты</div>
+      <h2 class="section-title" data-i18n="sectionSupport">Поддержка</h2>
+      <p class="section-subtitle" data-i18n="supportSubtitle" style="margin:0 auto;">
+        Есть вопросы? Мы всегда рады помочь.
+      </p>
+    </div>
+
+    <div class="support-grid">
+
+      <!-- Email -->
+      <a class="support-card reveal reveal-d1" id="supportEmailCard" href="#">
+        <div class="support-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <rect x="2" y="4" width="20" height="16" rx="2.5"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <div class="support-label" data-i18n="supportEmail">Почта для связи</div>
+        <div class="support-value" id="supportEmailVal"></div>
+        <div class="support-hours" id="supportHoursVal"></div>
+      </a>
+
+      <!-- Discord -->
+      <a class="support-card reveal reveal-d2" id="supportDiscordCard" href="#" target="_blank" rel="noopener">
+        <div class="support-icon">
+          <!-- Discord icon (монохромный SVG) -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--primary-light);">
+            <path d="M9 11.5a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/>
+            <path d="M19.27 5.33A17.75 17.75 0 0014.94 4c-.18.33-.38.77-.52 1.12a16.36 16.36 0 00-4.84 0A11.2 11.2 0 009.06 4 17.8 17.8 0 004.73 5.33C2.02 9.46 1.27 13.48 1.65 17.45A17.87 17.87 0 007.1 20c.42-.57.79-1.17 1.11-1.81a11.6 11.6 0 01-1.74-.84l.42-.33a12.73 12.73 0 0010.22 0l.43.33c-.55.33-1.14.61-1.75.84.32.64.69 1.24 1.11 1.81a17.83 17.83 0 005.45-2.55c.44-4.53-.75-8.52-3.08-12.17z"/>
+          </svg>
+        </div>
+        <div class="support-label" data-i18n="supportDiscord">Discord</div>
+        <div class="support-value">Discord Server</div>
+      </a>
+
+      <!-- Telegram -->
+      <a class="support-card reveal reveal-d3" id="supportTelegramCard" href="#" target="_blank" rel="noopener">
+        <div class="support-icon">
+          <!-- Telegram icon (монохромный SVG) -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--primary-light);">
+            <path d="M21.5 3.5L2.5 10.5l6.5 2 2 6.5 3-4 5.5 4z"/>
+            <path d="M9 12.5l9-9"/>
+          </svg>
+        </div>
+        <div class="support-label" data-i18n="supportTelegram">Telegram</div>
+        <div class="support-value">Telegram Channel</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+
+    <!-- Брендинг -->
+    <div class="footer-brand">
+      <div class="footer-brand-name">
+        <span class="logo-dot"></span>
+        Vortex Client
+      </div>
+      <p class="footer-tagline" id="footerTagline">Превосходство. Скорость. Победа.</p>
+    </div>
+
+    <!-- Навигация -->
+    <div class="footer-col">
+      <h4 data-i18n="footerNav">Навигация</h4>
+      <ul>
+        <li><a href="#hero"     data-i18n="nav0">Главная</a></li>
+        <li><a href="#features" data-i18n="nav1">Функции</a></li>
+        <li><a href="#video"    data-i18n="nav2">Видеообзор</a></li>
+        <li><a href="#pricing"  data-i18n="nav3">Купить</a></li>
+        <li><a href="#support"  data-i18n="nav4">Поддержка</a></li>
+      </ul>
+    </div>
+
+    <!-- Документы -->
+    <div class="footer-col">
+      <h4 data-i18n="footerLegal">Документы</h4>
+      <ul>
+        <li><a onclick="openModal('privacy')" data-i18n="footerPrivacy">Обработка персональных данных</a></li>
+        <li><a onclick="openModal('terms')"   data-i18n="footerTerms">Пользовательское соглашение</a></li>
+        <li><a onclick="openModal('rules')"   data-i18n="footerRules">Правила пользования</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p id="footerCopy"></p>
+    <div class="footer-socials">
+      <a href="#" id="footerDiscord" target="_blank">Discord</a>
+      <a href="#" id="footerTelegram" target="_blank">Telegram</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════
+     LEGAL MODALS
+════════════════════════════════════════ -->
+
+<!-- Политика персональных данных -->
+<div class="modal-overlay" id="modalPrivacy" onclick="closeModalOutside(event,'modalPrivacy')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 data-i18n="footerPrivacy">Обработка персональных данных</h3>
+      <button class="modal-close" onclick="closeModal('privacy')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-placeholder">
+        <div class="modal-placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
+        <p data-i18n="modalPrivacyDesc">
+          Политика обработки персональных данных будет опубликована в ближайшее время.
+        </p>
+        <code class="modal-hint">config.js → legal.privacy</code>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="input-box">
-
-<input type="password"
-placeholder="Password">
-
+<!-- Пользовательское соглашение -->
+<div class="modal-overlay" id="modalTerms" onclick="closeModalOutside(event,'modalTerms')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 data-i18n="footerTerms">Пользовательское соглашение</h3>
+      <button class="modal-close" onclick="closeModal('terms')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-placeholder">
+        <div class="modal-placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
+        <p data-i18n="modalTermsDesc">
+          Пользовательское соглашение будет опубликовано в ближайшее время.
+        </p>
+        <code class="modal-hint">config.js → legal.terms</code>
+      </div>
+    </div>
+  </div>
 </div>
 
-<button class="auth-btn"
-id="authBtn">
-Войти
-</button>
-
-<div class="auth-switch">
-
-<span onclick="switchAuth()"
-id="switchText">
-Создать аккаунт
-</span>
-
+<!-- Правила пользования -->
+<div class="modal-overlay" id="modalRules" onclick="closeModalOutside(event,'modalRules')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 data-i18n="footerRules">Правила пользования</h3>
+      <button class="modal-close" onclick="closeModal('rules')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-placeholder">
+        <div class="modal-placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h4 data-i18n="modalPlaceholderTitle">Документ в разработке</h4>
+        <p data-i18n="modalRulesDesc">
+          Правила пользования сервисом будут опубликованы в ближайшее время.
+        </p>
+        <code class="modal-hint">config.js → legal.rules</code>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- ── Попап оплаты (активируется через config.js → payment.usePopup = true) ── -->
+<div class="modal-overlay" id="modalPayment" onclick="closeModalOutside(event,'modalPayment')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="paymentPopupTitle">Оформление покупки</h3>
+      <button class="modal-close" onclick="closeModal('payment')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="payment-popup-content">
+        <p id="paymentPopupBody">Для оформления покупки свяжитесь с нами:</p>
+        <a id="paymentPopupLink" href="#" target="_blank" rel="noopener" class="payment-popup-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21.5 3.5L2.5 10.5l6.5 2 2 6.5 3-4 5.5 4z"/>
+          </svg>
+          Написать нам
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span id="toastMsg"></span>
 </div>
 
-<script>
-
-/* ========================= */
-/* AUTH */
-/* ========================= */
-
-function openAuth(){
-
-    document
-    .getElementById("authPanel")
-    .style.display="flex";
-
-}
-
-window.onclick=function(e){
-
-    let panel=
-    document
-    .getElementById("authPanel");
-
-    if(e.target===panel){
-
-        panel.style.display="none";
-
-    }
-
-}
-
-/* ========================= */
-/* TABS */
-/* ========================= */
-
-function openTab(event,tabId){
-
-    let tabs=
-    document.querySelectorAll(".tab");
-
-    let buttons=
-    document.querySelectorAll(".tab-btn");
-
-    tabs.forEach(tab=>{
-
-        tab.classList.remove("active");
-
-    });
-
-    buttons.forEach(btn=>{
-
-        btn.classList.remove("active");
-
-    });
-
-    document
-    .getElementById(tabId)
-    .classList
-    .add("active");
-
-    event.target
-    .classList
-    .add("active");
-
-}
-
-/* ========================= */
-/* LOGIN */
-/* ========================= */
-
-let login=true;
-
-function switchAuth(){
-
-    login=!login;
-
-    if(login){
-
-        document
-        .getElementById("authTitle")
-        .innerText="Авторизация";
-
-        document
-        .getElementById("authBtn")
-        .innerText="Войти";
-
-        document
-        .getElementById("switchText")
-        .innerText="Создать аккаунт";
-
-    }else{
-
-        document
-        .getElementById("authTitle")
-        .innerText="Регистрация";
-
-        document
-        .getElementById("authBtn")
-        .innerText="Создать аккаунт";
-
-        document
-        .getElementById("switchText")
-        .innerText="Уже есть аккаунт?";
-
-    }
-
-}
-
-/* ========================= */
-/* LANGUAGE */
-/* ========================= */
-
-function setLanguage(lang,btn){
-
-    document
-    .querySelectorAll(".lang-btn")
-    .forEach(el=>{
-
-        el.classList.remove("active");
-
-    });
-
-    btn.classList.add("active");
-
-    if(lang==="en"){
-
-        document
-        .getElementById("heroText")
-        .innerText=
-        "CodeDLC is a premium Minecraft 1.21.4 visual client with liquid glass UI, smooth animations and high performance.";
-
-        document
-        .getElementById("featuresTitle")
-        .innerText=
-        "Client Features";
-
-        document
-        .getElementById("authTitle")
-        .innerText=
-        "Authorization";
-
-        document
-        .getElementById("authBtn")
-        .innerText=
-        "Login";
-
-        document
-        .getElementById("switchText")
-        .innerText=
-        "Create account";
-
-    }
-
-    if(lang==="ru"){
-
-        document
-        .getElementById("heroText")
-        .innerText=
-        "CodeDLC — современный visual client для Minecraft 1.21.4. Премиальный glass интерфейс, плавные анимации и максимальный FPS.";
-
-        document
-        .getElementById("featuresTitle")
-        .innerText=
-        "Функции клиента";
-
-        document
-        .getElementById("authTitle")
-        .innerText=
-        "Авторизация";
-
-        document
-        .getElementById("authBtn")
-        .innerText=
-        "Войти";
-
-        document
-        .getElementById("switchText")
-        .innerText=
-        "Создать аккаунт";
-
-    }
-
-}
-
-</script>
-
+<script src="config.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
