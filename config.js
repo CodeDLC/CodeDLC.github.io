@@ -6,7 +6,7 @@
 const CONFIG = {
 
   // ─── ОСНОВНАЯ ИНФОРМАЦИЯ ────────────────────────────────
-  clientName: "Vortex Client",
+  clientName: "CodeDLC",
   clientTagline: {
     ru: "Превосходство. Скорость. Победа.",
     en: "Supremacy. Speed. Victory.",
