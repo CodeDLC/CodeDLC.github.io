@@ -2,29 +2,31 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CodeDLC</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Inter,sans-serif;
 }
 
 body{
-background:#050507;
+background:#06060a;
 color:white;
 overflow-x:hidden;
 }
 
-body::before{
-content:"";
+.bg{
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(circle,#7d4dff22,#000);
+background:
+radial-gradient(circle at top,#6e35ff44,transparent 30%),
+radial-gradient(circle at bottom,#4c00ff33,transparent 35%);
 z-index:-1;
 }
 
@@ -33,118 +35,100 @@ padding:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(15px);
-background:#ffffff07;
-border-bottom:1px solid #8d5dff20;
+backdrop-filter:blur(20px);
+background:#ffffff08;
+border-bottom:1px solid #ffffff10;
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:15px;
+gap:12px;
 }
 
 .logo img{
-width:55px;
-height:55px;
-border-radius:15px;
-box-shadow:0 0 30px #7d4dff;
+width:50px;
+height:50px;
+border-radius:14px;
+box-shadow:0 0 35px #7746ff;
 }
 
 .logo h1{
 font-size:25px;
-background:linear-gradient(90deg,#a26fff,#6b30ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
 }
 
-nav button{
-background:#7b4dff;
+.accBtn{
+background:#7a48ff;
 border:none;
-padding:10px 20px;
-border-radius:15px;
-color:white;
+padding:12px 20px;
+border-radius:14px;
 cursor:pointer;
-transition:.3s;
+color:white;
 }
 
-nav button:hover{
-transform:scale(1.1);
-box-shadow:0 0 30px #7d4dff;
-}
+.main{
 
-.hero{
-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+padding:60px 20px;
 text-align:center;
-padding:20px;
+max-width:1000px;
+margin:auto;
 }
 
-.hero img{
-width:170px;
-filter:drop-shadow(0 0 50px #7d4dff);
-animation:float 3s infinite ease-in-out;
+.heroLogo{
+
+width:180px;
+filter:drop-shadow(0 0 50px #7746ff);
+animation:up 3s infinite;
 }
 
-@keyframes float{
+@keyframes up{
 50%{
-transform:translateY(-15px);
+transform:translateY(-10px)
 }
 }
 
-.hero h2{
-font-size:60px;
-margin-top:25px;
-background:linear-gradient(#fff,#915cff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.title{
+font-size:55px;
+margin-top:20px;
+font-weight:800;
 }
 
-.hero p{
+.desc{
 opacity:.7;
 margin-top:10px;
 max-width:600px;
+margin-left:auto;
+margin-right:auto;
+line-height:25px;
 }
 
 .download{
+
 margin-top:30px;
-padding:18px 50px;
-font-size:18px;
+background:linear-gradient(90deg,#7a48ff,#4b1dff);
+padding:18px 35px;
 border:none;
-border-radius:18px;
-background:linear-gradient(90deg,#8b57ff,#5f23ff);
+border-radius:20px;
+font-size:18px;
 color:white;
 cursor:pointer;
 transition:.4s;
 }
 
 .download:hover{
-transform:scale(1.06);
-box-shadow:0 0 40px #7d4dff;
+
+transform:translateY(-4px);
+box-shadow:0 0 40px #7644ff;
+
 }
 
-.profile{
-width:90%;
-max-width:700px;
-margin:auto;
+.card{
+margin-top:60px;
+background:#ffffff07;
+border-radius:30px;
 padding:30px;
-background:#ffffff08;
-border-radius:25px;
-backdrop-filter:blur(15px);
-display:none;
-margin-bottom:50px;
-}
-
-.profile img{
-width:100px;
-border-radius:50%;
-}
-
-.profile h3{
-margin-top:10px;
+backdrop-filter:blur(20px);
+border:1px solid #ffffff10;
 }
 
 .modal{
@@ -153,71 +137,78 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:#000000cc;
 display:none;
 justify-content:center;
 align-items:center;
-z-index:100;
+background:#000000cc;
 }
 
-.box{
+.window{
+
 width:90%;
-max-width:380px;
-background:#111;
-padding:30px;
+max-width:400px;
+background:#0f0f15;
+padding:25px;
 border-radius:25px;
-border:1px solid #7d4dff;
 }
 
-.box h2{
+.window h2{
 margin-bottom:20px;
 }
 
 input{
 width:100%;
 padding:15px;
-margin-top:10px;
+margin-top:12px;
+background:#191924;
 border:none;
-outline:none;
-background:#1f1f1f;
-border-radius:15px;
+border-radius:14px;
 color:white;
 }
 
-.submit{
+.send{
+
 width:100%;
 margin-top:20px;
 padding:15px;
+background:#7945ff;
 border:none;
-background:#7d4dff;
-border-radius:15px;
+border-radius:14px;
 color:white;
-font-size:17px;
 cursor:pointer;
+
 }
 
-.switch{
+.change{
+
 margin-top:15px;
+opacity:.6;
 text-align:center;
-opacity:.7;
 cursor:pointer;
+
+}
+
+.profile{
+display:none;
 }
 
 @media(max-width:700px){
 
-.hero h2{
-font-size:35px;
+.title{
+font-size:38px;
 }
 
-.hero img{
-width:120px;
+.heroLogo{
+width:130px;
 }
 
 }
+
 </style>
 </head>
-
 <body>
+
+<div class="bg"></div>
 
 <header>
 
@@ -226,62 +217,65 @@ width:120px;
 <h1>CodeDLC</h1>
 </div>
 
-<nav>
-<button onclick="openAuth()">Аккаунт</button>
-</nav>
+<button class="accBtn" id="openAcc">
+Аккаунт
+</button>
 
 </header>
 
-<section class="hero">
+<section class="main">
 
-<img src="icon.png">
+<img class="heroLogo" src="icon.png">
 
-<h2>CodeDLC Client</h2>
+<div class="title">
+CodeDLC Client
+</div>
 
-<p>
-Мощный Minecraft клиент с современным дизайном и лучшими функциями.
-</p>
+<div class="desc">
+Красивый Minecraft клиент с современным интерфейсом, функциями и удобной системой аккаунтов.
+</div>
 
-<button class="download">
-Скачать Client
+<button class="download" onclick="window.location.href='WORKUPLOAD_LINK'">
+Скачать клиент
 </button>
 
-</section>
+<div class="card profile" id="profile">
 
-<div class="profile" id="profile">
-
-<img src="icon.png">
-
-<h3 id="nick"></h3>
-
-<p>Премиум пользователь CodeDLC</p>
+<h2 id="nickname"></h2>
 
 <br>
 
-<button class="download" onclick="logout()">
+<p>Добро пожаловать в CodeDLC</p>
+
+<br>
+
+<button class="download" id="logout">
 Выйти
 </button>
 
 </div>
 
+</section>
+
+
 <div class="modal" id="modal">
 
-<div class="box">
+<div class="window">
 
-<h2 id="title">
+<h2 id="modeText">
 Вход
 </h2>
 
-<input placeholder="Логин" id="user">
+<input id="login" placeholder="Логин">
 
-<input placeholder="Пароль" type="password" id="pass">
+<input id="password" type="password" placeholder="Пароль">
 
-<button class="submit" onclick="login()" id="btn">
+<button class="send" id="sendBtn">
 Войти
 </button>
 
-<div class="switch" onclick="switchMode()" id="switch">
-Нет аккаунта? Регистрация
+<div class="change" id="switchBtn">
+Создать аккаунт
 </div>
 
 </div>
@@ -290,122 +284,193 @@ width:120px;
 
 <script>
 
-let reg=false
+const modal=
+document.getElementById("modal")
 
-function openAuth(){
+const openAcc=
+document.getElementById("openAcc")
+
+const sendBtn=
+document.getElementById("sendBtn")
+
+const switchBtn=
+document.getElementById("switchBtn")
+
+const modeText=
+document.getElementById("modeText")
+
+const profile=
+document.getElementById("profile")
+
+const nickname=
+document.getElementById("nickname")
+
+const logout=
+document.getElementById("logout")
+
+let register=false
+
+
+openAcc.onclick=()=>{
+
 modal.style.display="flex"
+
 }
+
 
 window.onclick=(e)=>{
 
-if(e.target==modal){
+if(e.target===modal){
+
 modal.style.display="none"
-}
 
 }
 
-function switchMode(){
+}
 
-reg=!reg
 
-if(reg){
+switchBtn.onclick=()=>{
 
-title.innerText="Регистрация"
-btn.innerText="Создать аккаунт"
-switch.innerText="Уже есть аккаунт?"
+register=!register
+
+if(register){
+
+modeText.innerText=
+"Регистрация"
+
+sendBtn.innerText=
+"Создать"
+
+switchBtn.innerText=
+"Уже есть аккаунт"
 
 }else{
 
-title.innerText="Вход"
-btn.innerText="Войти"
-switch.innerText="Нет аккаунта? Регистрация"
+modeText.innerText=
+"Вход"
+
+sendBtn.innerText=
+"Войти"
+
+switchBtn.innerText=
+"Создать аккаунт"
 
 }
 
 }
 
-function login(){
 
-let u=user.value
-let p=pass.value
+sendBtn.onclick=()=>{
 
-if(!u||!p)return
+let login=
+document.getElementById("login").value
+
+let password=
+document.getElementById("password").value
+
+if(!login||!password){
+
+alert("Заполни поля")
+
+return
+
+}
 
 let users=
-JSON.parse(localStorage.getItem("users"))||[]
+JSON.parse(
+localStorage.getItem("codedlcUsers")
+)||[]
 
-if(reg){
 
-if(users.find(x=>x.name==u)){
+if(register){
 
-alert("Аккаунт существует")
+if(users.find(
+x=>x.login===login
+)){
+
+alert("Аккаунт уже есть")
 return
 
 }
 
 users.push({
-name:u,
-pass:p
+
+login:login,
+password:password
+
 })
 
 localStorage.setItem(
-"users",
+"codedlcUsers",
 JSON.stringify(users)
 )
 
-alert("Успешно")
+alert("Аккаунт создан")
 
-}else{
+return
 
-let ok=users.find(
-x=>x.name==u&&x.pass==p
+}
+
+
+let user=users.find(
+x=>
+x.login===login &&
+x.password===password
 )
 
-if(!ok){
+if(!user){
 
-alert("Неверные данные")
+alert("Неверный логин или пароль")
+
 return
+
 }
 
 localStorage.setItem(
-"user",
-u
+"codedlcCurrent",
+login
 )
 
-loadProfile()
-
-}
-
-}
-
-function loadProfile(){
-
-let u=
-localStorage.getItem("user")
-
-if(u){
-
-profile.style.display="block"
-
-nick.innerText=u
+load()
 
 modal.style.display="none"
 
 }
 
+
+function load(){
+
+let user=
+localStorage.getItem(
+"codedlcCurrent"
+)
+
+if(user){
+
+profile.style.display=
+"block"
+
+nickname.innerText=
+user
+
 }
 
-function logout(){
+}
 
-localStorage.removeItem("user")
+logout.onclick=()=>{
+
+localStorage.removeItem(
+"codedlcCurrent"
+)
 
 location.reload()
 
 }
 
-loadProfile()
+load()
 
 </script>
 
 </body>
 </html>
+
