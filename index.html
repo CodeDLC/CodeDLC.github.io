@@ -2,475 +2,687 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CodeDLC</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <style>
+
+:root{
+--bg:#111;
+--card:#1c1c1c;
+--text:#0f0;
+--border:#0f0;
+}
+
+.light{
+--bg:#efefef;
+--card:#fff;
+--text:#111;
+--border:#0f0;
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Inter,sans-serif;
+font-family:Courier New;
 }
 
 body{
-background:#06060a;
-color:white;
+background:var(--bg);
+color:var(--text);
+transition:.4s;
 overflow-x:hidden;
-}
-
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at top,#6e35ff44,transparent 30%),
-radial-gradient(circle at bottom,#4c00ff33,transparent 35%);
-z-index:-1;
 }
 
 header{
 padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-backdrop-filter:blur(20px);
-background:#ffffff08;
-border-bottom:1px solid #ffffff10;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.logo img{
-width:50px;
-height:50px;
-border-radius:14px;
-box-shadow:0 0 35px #7746ff;
-}
-
-.logo h1{
-font-size:25px;
-}
-
-.accBtn{
-background:#7a48ff;
-border:none;
-padding:12px 20px;
-border-radius:14px;
-cursor:pointer;
-color:white;
-}
-
-.main{
-
-padding:60px 20px;
+border-bottom:2px solid #0f0;
+background:#0a0a0a;
 text-align:center;
-max-width:1000px;
-margin:auto;
 }
 
-.heroLogo{
-
-width:180px;
-filter:drop-shadow(0 0 50px #7746ff);
-animation:up 3s infinite;
+pre{
+color:#0f0;
+font-size:11px;
 }
 
-@keyframes up{
-50%{
-transform:translateY(-10px)
-}
-}
-
-.title{
-font-size:55px;
-margin-top:20px;
-font-weight:800;
-}
-
-.desc{
-opacity:.7;
-margin-top:10px;
-max-width:600px;
-margin-left:auto;
-margin-right:auto;
-line-height:25px;
-}
-
-.download{
-
-margin-top:30px;
-background:linear-gradient(90deg,#7a48ff,#4b1dff);
-padding:18px 35px;
-border:none;
-border-radius:20px;
-font-size:18px;
-color:white;
-cursor:pointer;
-transition:.4s;
-}
-
-.download:hover{
-
-transform:translateY(-4px);
-box-shadow:0 0 40px #7644ff;
-
+.container{
+display:grid;
+grid-template-columns:1fr 300px;
+gap:20px;
+padding:20px;
 }
 
 .card{
-margin-top:60px;
-background:#ffffff07;
-border-radius:30px;
-padding:30px;
-backdrop-filter:blur(20px);
-border:1px solid #ffffff10;
+background:var(--card);
+padding:15px;
+border:2px solid #333;
+margin-bottom:20px;
 }
 
-.modal{
-position:fixed;
+button{
+background:#111;
+color:#0f0;
+padding:12px;
+border:none;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+width:100%;
+margin-top:10px;
+}
+
+button::before{
+content:"";
+position:absolute;
+left:-100%;
 top:0;
-left:0;
 width:100%;
 height:100%;
-display:none;
-justify-content:center;
-align-items:center;
-background:#000000cc;
+background:linear-gradient(90deg,transparent,#0f0,transparent);
+animation:move 3s infinite;
 }
 
-.window{
-
-width:90%;
-max-width:400px;
-background:#0f0f15;
-padding:25px;
-border-radius:25px;
-}
-
-.window h2{
-margin-bottom:20px;
+@keyframes move{
+100%{left:100%;}
 }
 
 input{
 width:100%;
-padding:15px;
-margin-top:12px;
-background:#191924;
-border:none;
-border-radius:14px;
-color:white;
+padding:10px;
+margin:8px 0;
+background:black;
+color:#0f0;
+border:1px solid #0f0;
 }
 
-.send{
-
-width:100%;
-margin-top:20px;
-padding:15px;
-background:#7945ff;
-border:none;
-border-radius:14px;
-color:white;
-cursor:pointer;
-
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+gap:10px;
 }
 
-.change{
-
-margin-top:15px;
-opacity:.6;
+.feature{
+padding:20px;
 text-align:center;
-cursor:pointer;
-
+background:#101010;
+position:relative;
+border:1px solid #0f0;
 }
 
-.profile{
+.tooltip{
 display:none;
+position:absolute;
+bottom:100%;
+left:50%;
+transform:translateX(-50%);
+background:black;
+padding:8px;
+width:150px;
+z-index:5;
+font-size:12px;
 }
 
-@media(max-width:700px){
-
-.title{
-font-size:38px;
+.feature:hover .tooltip{
+display:block;
 }
 
-.heroLogo{
-width:130px;
+.newsText{
+display:none;
+padding:10px;
 }
 
+.sidebar{
+position:sticky;
+top:20px;
+height:fit-content;
+}
+
+.toast{
+position:fixed;
+right:20px;
+top:20px;
+padding:20px;
+background:#0f0;
+color:black;
+display:none;
+z-index:999;
+}
+
+.avatar{
+font-size:80px;
+text-align:center;
+}
+
+.hiddenPanel{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:20px;
+background:black;
+border:2px solid #0f0;
+display:none;
+z-index:9999;
+width:300px;
+}
+
+footer{
+padding:20px;
+text-align:center;
+border-top:2px solid #0f0;
+}
+
+.injected{
+background:green!important;
+color:white;
 }
 
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
+<div class="toast" id="toast"></div>
+
+<div class="hiddenPanel" id="panel">
+<h3>SECRET PANEL</h3>
+<p>Activation code:</p>
+<input id="premiumCode">
+<button onclick="activatePremium()">Activate</button>
+<div id="premiumResult"></div>
+</div>
 
 <header>
 
-<div class="logo">
-<img src="icon.png">
-<h1>CodeDLC</h1>
-</div>
+<pre>
 
-<button class="accBtn" id="openAcc">
-Аккаунт
-</button>
+ ██████╗ ██████╗ ██████╗ ███████╗██████╗ ██╗      ██████╗
+██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║     ██╔════╝
+██║     ██║   ██║██║  ██║█████╗  ██║  ██║██║     ██║     
+██║     ██║   ██║██║  ██║██╔══╝  ██║  ██║██║     ██║     
+╚██████╗╚██████╔╝██████╔╝███████╗██████╔╝███████╗╚██████╗
+ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═════╝ ╚══════╝ ╚═════╝
+
+</pre>
+
+<h2>CodeDLC</h2>
 
 </header>
 
-<section class="main">
+<div class="container">
 
-<img class="heroLogo" src="icon.png">
+<div>
 
-<div class="title">
-CodeDLC Client
-</div>
+<div class="card">
 
-<div class="desc">
-Красивый Minecraft клиент с современным интерфейсом, функциями и удобной системой аккаунтов.
-</div>
+<h2>Скачать чит</h2>
 
-<button class="download" onclick="window.location.href='WORKUPLOAD_LINK'">
-Скачать клиент
-</button>
+<button onclick="downloadCheat()">Скачать чит</button>
 
-<div class="card profile" id="profile">
-
-<h2 id="nickname"></h2>
-
-<br>
-
-<p>Добро пожаловать в CodeDLC</p>
-
-<br>
-
-<button class="download" id="logout">
-Выйти
-</button>
+<p>Скачиваний:
+<span id="downloads"></span>
+</p>
 
 </div>
 
-</section>
+
+<div id="authBox" class="card">
+
+<h2>Вход</h2>
+
+<input id="email" placeholder="Email">
+
+<input id="pass" type="password" placeholder="Пароль">
+
+<button onclick="login()">Войти</button>
+
+<hr style="margin:15px 0">
+
+<h2>Регистрация</h2>
+
+<input id="regEmail" placeholder="Email">
+
+<input id="regPass" type="password" placeholder="Пароль">
+
+<button onclick="register()">Регистрация</button>
+
+</div>
 
 
-<div class="modal" id="modal">
+<div id="cabinet" style="display:none">
 
-<div class="window">
+<div class="card">
 
-<h2 id="modeText">
-Вход
-</h2>
+<div class="avatar">
+<i class="fa-solid fa-circle-user"></i>
+</div>
 
-<input id="login" placeholder="Логин">
+<input id="nickname" placeholder="Ник">
 
-<input id="password" type="password" placeholder="Пароль">
+<button onclick="saveNick()">Сохранить ник</button>
 
-<button class="send" id="sendBtn">
-Войти
-</button>
+<br><br>
 
-<div class="change" id="switchBtn">
-Создать аккаунт
+<p id="sub"></p>
+
+<p id="online"></p>
+
+<button onclick="extendSub()">Продлить подписку</button>
+
+<button id="injectBtn" onclick="inject()">Запустить инжект</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Новости</h2>
+
+<div>
+
+<h3 onclick="toggleNews(this)">
+Обновление 2.1
+</h3>
+
+<div class="newsText">
+Добавлен новый ESP и ускорен Aimbot.
+</div>
+
+</div>
+
+<div>
+
+<h3 onclick="toggleNews(this)">
+Обновление 2.2
+</h3>
+
+<div class="newsText">
+Исправлены баги FastPlace и Fly.
+</div>
+
+</div>
+
+<div>
+
+<h3 onclick="toggleNews(this)">
+Обновление 3.0
+</h3>
+
+<div class="newsText">
+Новый дизайн + защита.
 </div>
 
 </div>
 
 </div>
+
+
+<div class="card">
+
+<h2>Функции</h2>
+
+<div class="grid" id="features"></div>
+
+</div>
+
+</div>
+
+<div class="sidebar">
+
+<div class="card">
+
+<h3>Последние действия</h3>
+
+<div id="actions"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+Тема
+
+<input type="checkbox" id="theme">
+
+</footer>
 
 <script>
 
-const modal=
-document.getElementById("modal")
+let features=[
+["X-Ray","fa-eye","Видеть руды"],
+["Fly","fa-plane","Полет"],
+["Speed","fa-bolt","Ускорение"],
+["Aimbot","fa-crosshairs","Автонаводка"],
+["ESP","fa-user-secret","Показывает игроков"],
+["AutoClicker","fa-computer-mouse","Авто клики"],
+["NoFall","fa-feather","Нет урона"],
+["FastPlace","fa-forward","Быстрая установка"],
+["AirJump","fa-arrow-up","Прыжки"],
+["AntiVoid","fa-shield","Спасение"]
+]
 
-const openAcc=
-document.getElementById("openAcc")
+features.forEach(i=>{
 
-const sendBtn=
-document.getElementById("sendBtn")
+featuresHTML=`
+<div class='feature'>
 
-const switchBtn=
-document.getElementById("switchBtn")
+<i class='fa ${i[1]}'></i>
 
-const modeText=
-document.getElementById("modeText")
+<div>${i[0]}</div>
 
-const profile=
-document.getElementById("profile")
+<div class='tooltip'>
+${i[2]}
+</div>
 
-const nickname=
-document.getElementById("nickname")
+</div>
+`
 
-const logout=
-document.getElementById("logout")
-
-let register=false
-
-
-openAcc.onclick=()=>{
-
-modal.style.display="flex"
-
-}
-
-
-window.onclick=(e)=>{
-
-if(e.target===modal){
-
-modal.style.display="none"
-
-}
-
-}
-
-
-switchBtn.onclick=()=>{
-
-register=!register
-
-if(register){
-
-modeText.innerText=
-"Регистрация"
-
-sendBtn.innerText=
-"Создать"
-
-switchBtn.innerText=
-"Уже есть аккаунт"
-
-}else{
-
-modeText.innerText=
-"Вход"
-
-sendBtn.innerText=
-"Войти"
-
-switchBtn.innerText=
-"Создать аккаунт"
-
-}
-
-}
-
-
-sendBtn.onclick=()=>{
-
-let login=
-document.getElementById("login").value
-
-let password=
-document.getElementById("password").value
-
-if(!login||!password){
-
-alert("Заполни поля")
-
-return
-
-}
-
-let users=
-JSON.parse(
-localStorage.getItem("codedlcUsers")
-)||[]
-
-
-if(register){
-
-if(users.find(
-x=>x.login===login
-)){
-
-alert("Аккаунт уже есть")
-return
-
-}
-
-users.push({
-
-login:login,
-password:password
+document.getElementById("features").innerHTML+=featuresHTML
 
 })
 
+
+let downloads=localStorage.getItem("downloads")||0
+
+downloadsEl.innerHTML=downloads
+
+function downloadCheat(){
+
+downloads++
+
+localStorage.setItem("downloads",downloads)
+
+downloadsEl.innerHTML=downloads
+
+let file=new Blob(["CodeDLC test"],{type:"text/plain"})
+
+let a=document.createElement("a")
+
+a.href=URL.createObjectURL(file)
+
+a.download="CodeDLC.jar"
+
+a.click()
+
+addAction("скачивание")
+
+}
+
+function fakeHash(v){
+
+return btoa(v+"salt")
+
+}
+
+function register(){
+
+users=JSON.parse(localStorage.getItem("users")||"[]")
+
+mail=regEmail.value
+
+pass=regPass.value
+
+date=new Date()
+
+date.setDate(date.getDate()+30)
+
+users.push({
+
+email:mail,
+pass:fakeHash(pass),
+nick:"Player",
+reg:Date.now(),
+sub:date.getTime()
+
+})
+
+localStorage.setItem("users",JSON.stringify(users))
+
+alert("успешно")
+
+}
+
+function login(){
+
+users=JSON.parse(localStorage.getItem("users")||"[]")
+
+user=users.find(x=>x.email==email.value&&x.pass==fakeHash(pass.value))
+
+if(!user)return alert("ошибка")
+
+localStorage.setItem("session",user.email)
+
+showCabinet()
+
+addAction("логин")
+
+}
+
+function showCabinet(){
+
+authBox.style.display="none"
+
+cabinet.style.display="block"
+
+users=JSON.parse(localStorage.getItem("users"))
+
+session=localStorage.getItem("session")
+
+user=users.find(x=>x.email==session)
+
+nickname.value=user.nick
+
+sub.innerHTML="Активна до "+new Date(user.sub).toLocaleDateString()
+
+online.innerHTML=Math.random()<0.2?"Онлайн: нет":"Онлайн: да"
+
+}
+
+function saveNick(){
+
+users=JSON.parse(localStorage.getItem("users"))
+
+session=localStorage.getItem("session")
+
+u=users.find(x=>x.email==session)
+
+u.nick=nickname.value
+
+localStorage.setItem("users",JSON.stringify(users))
+
+}
+
+function extendSub(){
+
+users=JSON.parse(localStorage.getItem("users"))
+
+session=localStorage.getItem("session")
+
+u=users.find(x=>x.email==session)
+
+u.sub+=2592000000
+
+localStorage.setItem("users",JSON.stringify(users))
+
+showCabinet()
+
+}
+
+function toggleNews(el){
+
+txt=el.nextElementSibling
+
+txt.style.display=
+txt.style.display=="block"?
+"none":"block"
+
+}
+
+function inject(){
+
+injectBtn.classList.add("injected")
+
+showToast("Injected into Minecraft")
+
+console.log(
+"[LOG] injected "
++new Date()
+)
+
+addAction("инжект")
+
+setTimeout(()=>{
+
+injectBtn.classList.remove("injected")
+
+},3000)
+
+}
+
+function showToast(text){
+
+toast.innerHTML=text
+
+toast.style.display="block"
+
+setTimeout(()=>{
+
+toast.style.display="none"
+
+},3000)
+
+}
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.ctrlKey&&
+e.shiftKey&&
+e.key=="K"
+){
+
+panel.style.display="block"
+
+}
+
+})
+
+function activatePremium(){
+
+if(
+premiumCode.value=="1337"
+){
+
+premiumResult.innerHTML=
+"Премиум разблокирован"
+
+}
+
+}
+
+function addAction(v){
+
+arr=
+JSON.parse(
+localStorage.getItem("actions")
+||"[]"
+)
+
+arr.unshift(v)
+
+arr=arr.slice(0,3)
+
 localStorage.setItem(
-"codedlcUsers",
-JSON.stringify(users)
+"actions",
+JSON.stringify(arr)
 )
 
-alert("Аккаунт создан")
-
-return
+loadActions()
 
 }
 
+function loadActions(){
 
-let user=users.find(
-x=>
-x.login===login &&
-x.password===password
+arr=
+JSON.parse(
+localStorage.getItem("actions")
+||"[]"
 )
 
-if(!user){
+actions.innerHTML=""
 
-alert("Неверный логин или пароль")
+arr.forEach(x=>{
 
-return
+actions.innerHTML+=
+"<p>"+x+"</p>"
+
+})
 
 }
 
-localStorage.setItem(
-"codedlcCurrent",
-login
-)
-
-load()
-
-modal.style.display="none"
-
-}
-
-
-function load(){
-
-let user=
+theme.checked=
 localStorage.getItem(
-"codedlcCurrent"
+"theme"
+)=="light"
+
+if(theme.checked){
+
+document.body.classList.add(
+"light"
 )
 
-if(user){
-
-profile.style.display=
-"block"
-
-nickname.innerText=
-user
-
 }
 
-}
+theme.onchange=()=>{
 
-logout.onclick=()=>{
+if(theme.checked){
 
-localStorage.removeItem(
-"codedlcCurrent"
+document.body.classList.add(
+"light"
 )
 
-location.reload()
+localStorage.setItem(
+"theme",
+"light"
+)
+
+}else{
+
+document.body.classList.remove(
+"light"
+)
+
+localStorage.setItem(
+"theme",
+"dark"
+)
 
 }
 
-load()
+}
+
+loadActions()
+
+if(
+localStorage.getItem(
+"session"
+)
+){
+
+showCabinet()
+
+}
 
 </script>
 
 </body>
 </html>
-
