@@ -2,685 +2,307 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CodeDLC</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 <style>
-
 :root{
---bg:#111;
---card:#1c1c1c;
---text:#0f0;
---border:#0f0;
-}
-
-.light{
---bg:#efefef;
---card:#fff;
---text:#111;
---border:#0f0;
+  --bg1:#0b0614;
+  --bg2:#120a24;
+  --glass:rgba(255,255,255,0.06);
+  --glass2:rgba(255,255,255,0.10);
+  --accent:#b026ff;
+  --accent2:#6a00ff;
+  --text:#e7ddff;
+  --border:rgba(176,38,255,0.4);
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Courier New;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui, sans-serif;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-transition:.4s;
-overflow-x:hidden;
+  background:radial-gradient(circle at top, var(--bg2), var(--bg1));
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
 header{
-padding:20px;
-border-bottom:2px solid #0f0;
-background:#0a0a0a;
-text-align:center;
+  text-align:center;
+  padding:30px 15px;
 }
 
-pre{
-color:#0f0;
-font-size:11px;
+.logo{
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--accent);
 }
 
 .container{
-display:grid;
-grid-template-columns:1fr 300px;
-gap:20px;
-padding:20px;
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:20px;
+  padding:20px;
 }
 
-.card{
-background:var(--card);
-padding:15px;
-border:2px solid #333;
-margin-bottom:20px;
+@media(max-width:900px){
+  .container{
+    grid-template-columns:1fr;
+  }
+}
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  border-radius:14px;
+  padding:15px;
+  box-shadow:0 0 30px rgba(0,0,0,0.4);
 }
 
 button{
-background:#111;
-color:#0f0;
-padding:12px;
-border:none;
-cursor:pointer;
-position:relative;
-overflow:hidden;
-width:100%;
-margin-top:10px;
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  transition:.3s;
+  font-weight:600;
 }
 
-button::before{
-content:"";
-position:absolute;
-left:-100%;
-top:0;
-width:100%;
-height:100%;
-background:linear-gradient(90deg,transparent,#0f0,transparent);
-animation:move 3s infinite;
-}
-
-@keyframes move{
-100%{left:100%;}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(176,38,255,0.4);
 }
 
 input{
-width:100%;
-padding:10px;
-margin:8px 0;
-background:black;
-color:#0f0;
-border:1px solid #0f0;
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,0.3);
+  color:white;
+  outline:none;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
-gap:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:10px;
 }
 
-.feature{
-padding:20px;
-text-align:center;
-background:#101010;
-position:relative;
-border:1px solid #0f0;
+.item{
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.3s;
 }
 
-.tooltip{
-display:none;
-position:absolute;
-bottom:100%;
-left:50%;
-transform:translateX(-50%);
-background:black;
-padding:8px;
-width:150px;
-z-index:5;
-font-size:12px;
+.item:hover{
+  background:var(--glass2);
+  transform:scale(1.05);
 }
 
-.feature:hover .tooltip{
-display:block;
-}
-
-.newsText{
-display:none;
-padding:10px;
-}
-
-.sidebar{
-position:sticky;
-top:20px;
-height:fit-content;
+.hidden{
+  display:none;
 }
 
 .toast{
-position:fixed;
-right:20px;
-top:20px;
-padding:20px;
-background:#0f0;
-color:black;
-display:none;
-z-index:999;
+  position:fixed;
+  right:20px;
+  top:20px;
+  padding:12px 18px;
+  background:rgba(176,38,255,0.9);
+  color:white;
+  border-radius:12px;
+  display:none;
 }
 
-.avatar{
-font-size:80px;
-text-align:center;
+.sidebar{
+  position:sticky;
+  top:20px;
 }
 
-.hiddenPanel{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:20px;
-background:black;
-border:2px solid #0f0;
-display:none;
-z-index:9999;
-width:300px;
-}
-
-footer{
-padding:20px;
-text-align:center;
-border-top:2px solid #0f0;
-}
-
-.injected{
-background:green!important;
-color:white;
+.small{
+  font-size:13px;
+  opacity:.8;
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="toast" id="toast"></div>
 
-<div class="hiddenPanel" id="panel">
-<h3>SECRET PANEL</h3>
-<p>Activation code:</p>
-<input id="premiumCode">
-<button onclick="activatePremium()">Activate</button>
-<div id="premiumResult"></div>
-</div>
-
 <header>
-
-<pre>
-
- ██████╗ ██████╗ ██████╗ ███████╗██████╗ ██╗      ██████╗
-██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║     ██╔════╝
-██║     ██║   ██║██║  ██║█████╗  ██║  ██║██║     ██║     
-██║     ██║   ██║██║  ██║██╔══╝  ██║  ██║██║     ██║     
-╚██████╗╚██████╔╝██████╔╝███████╗██████╔╝███████╗╚██████╗
- ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═════╝ ╚══════╝ ╚═════╝
-
-</pre>
-
-<h2>CodeDLC</h2>
-
+  <div class="logo">CodeDLC</div>
+  <div class="small">glass UI / dark purple build</div>
 </header>
 
 <div class="container">
 
 <div>
 
-<div class="card">
+<div class="glass">
+  <h3>Скачать</h3>
+  <button onclick="download()">Скачать чит</button>
+  <div class="small">Скачиваний: <span id="dl">0</span></div>
+</div>
 
-<h2>Скачать чит</h2>
+<div class="glass">
+  <h3>Авторизация</h3>
+  <input id="email" placeholder="email">
+  <input id="pass" type="password" placeholder="password">
+  <button onclick="login()">Войти</button>
 
-<button onclick="downloadCheat()">Скачать чит</button>
+  <hr style="margin:10px 0;border:1px solid rgba(255,255,255,0.1)">
 
-<p>Скачиваний:
-<span id="downloads"></span>
-</p>
+  <input id="regEmail" placeholder="рег email">
+  <input id="regPass" type="password" placeholder="рег пароль">
+  <button onclick="register()">Регистрация</button>
+</div>
+
+<div class="glass hidden" id="cab">
+
+  <h3>Кабинет</h3>
+  <div id="nickView">Nick: Player</div>
+  <input id="nick" placeholder="смена ника">
+  <button onclick="saveNick()">Сохранить</button>
+
+  <div id="sub"></div>
+
+  <button onclick="extend()">Продлить +30 дней</button>
+  <button onclick="inject()">Inject</button>
 
 </div>
 
-
-<div id="authBox" class="card">
-
-<h2>Вход</h2>
-
-<input id="email" placeholder="Email">
-
-<input id="pass" type="password" placeholder="Пароль">
-
-<button onclick="login()">Войти</button>
-
-<hr style="margin:15px 0">
-
-<h2>Регистрация</h2>
-
-<input id="regEmail" placeholder="Email">
-
-<input id="regPass" type="password" placeholder="Пароль">
-
-<button onclick="register()">Регистрация</button>
-
-</div>
-
-
-<div id="cabinet" style="display:none">
-
-<div class="card">
-
-<div class="avatar">
-<i class="fa-solid fa-circle-user"></i>
-</div>
-
-<input id="nickname" placeholder="Ник">
-
-<button onclick="saveNick()">Сохранить ник</button>
-
-<br><br>
-
-<p id="sub"></p>
-
-<p id="online"></p>
-
-<button onclick="extendSub()">Продлить подписку</button>
-
-<button id="injectBtn" onclick="inject()">Запустить инжект</button>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Новости</h2>
-
-<div>
-
-<h3 onclick="toggleNews(this)">
-Обновление 2.1
-</h3>
-
-<div class="newsText">
-Добавлен новый ESP и ускорен Aimbot.
-</div>
-
-</div>
-
-<div>
-
-<h3 onclick="toggleNews(this)">
-Обновление 2.2
-</h3>
-
-<div class="newsText">
-Исправлены баги FastPlace и Fly.
-</div>
-
-</div>
-
-<div>
-
-<h3 onclick="toggleNews(this)">
-Обновление 3.0
-</h3>
-
-<div class="newsText">
-Новый дизайн + защита.
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>Функции</h2>
-
-<div class="grid" id="features"></div>
-
+<div class="glass">
+  <h3>Функции</h3>
+  <div class="grid">
+    <div class="item">X-Ray</div>
+    <div class="item">Fly</div>
+    <div class="item">Speed</div>
+    <div class="item">Aimbot</div>
+    <div class="item">ESP</div>
+    <div class="item">NoFall</div>
+  </div>
 </div>
 
 </div>
 
 <div class="sidebar">
 
-<div class="card">
-
-<h3>Последние действия</h3>
-
-<div id="actions"></div>
-
+<div class="glass">
+  <h3>Лог</h3>
+  <div id="log"></div>
 </div>
 
 </div>
 
 </div>
-
-<footer>
-
-Тема
-
-<input type="checkbox" id="theme">
-
-</footer>
 
 <script>
 
-let features=[
-["X-Ray","fa-eye","Видеть руды"],
-["Fly","fa-plane","Полет"],
-["Speed","fa-bolt","Ускорение"],
-["Aimbot","fa-crosshairs","Автонаводка"],
-["ESP","fa-user-secret","Показывает игроков"],
-["AutoClicker","fa-computer-mouse","Авто клики"],
-["NoFall","fa-feather","Нет урона"],
-["FastPlace","fa-forward","Быстрая установка"],
-["AirJump","fa-arrow-up","Прыжки"],
-["AntiVoid","fa-shield","Спасение"]
-]
+let dl = localStorage.getItem("dl")||0
+dlView()
 
-features.forEach(i=>{
-
-featuresHTML=`
-<div class='feature'>
-
-<i class='fa ${i[1]}'></i>
-
-<div>${i[0]}</div>
-
-<div class='tooltip'>
-${i[2]}
-</div>
-
-</div>
-`
-
-document.getElementById("features").innerHTML+=featuresHTML
-
-})
-
-
-let downloads=localStorage.getItem("downloads")||0
-
-downloadsEl.innerHTML=downloads
-
-function downloadCheat(){
-
-downloads++
-
-localStorage.setItem("downloads",downloads)
-
-downloadsEl.innerHTML=downloads
-
-let file=new Blob(["CodeDLC test"],{type:"text/plain"})
-
-let a=document.createElement("a")
-
-a.href=URL.createObjectURL(file)
-
-a.download="CodeDLC.jar"
-
-a.click()
-
-addAction("скачивание")
-
+function dlView(){
+  document.getElementById("dl").innerText = dl
 }
 
-function fakeHash(v){
+function download(){
+  dl++
+  localStorage.setItem("dl",dl)
+  dlView()
 
-return btoa(v+"salt")
+  let blob = new Blob(["CodeDLC test file"],{type:"text/plain"})
+  let a = document.createElement("a")
+  a.href = URL.createObjectURL(blob)
+  a.download="CodeDLC.jar"
+  a.click()
 
+  log("download")
 }
 
 function register(){
-
-users=JSON.parse(localStorage.getItem("users")||"[]")
-
-mail=regEmail.value
-
-pass=regPass.value
-
-date=new Date()
-
-date.setDate(date.getDate()+30)
-
-users.push({
-
-email:mail,
-pass:fakeHash(pass),
-nick:"Player",
-reg:Date.now(),
-sub:date.getTime()
-
-})
-
-localStorage.setItem("users",JSON.stringify(users))
-
-alert("успешно")
-
+  let users = JSON.parse(localStorage.getItem("users")||"[]")
+  users.push({
+    e:regEmail.value,
+    p:btoa(regPass.value+"salt"),
+    sub:Date.now()+2592000000,
+    nick:"Player"
+  })
+  localStorage.setItem("users",JSON.stringify(users))
+  alert("ok")
 }
 
 function login(){
+  let users = JSON.parse(localStorage.getItem("users")||"[]")
+  let u = users.find(x=>x.e==email.value && x.p==btoa(pass.value+"salt"))
+  if(!u) return alert("error")
 
-users=JSON.parse(localStorage.getItem("users")||"[]")
-
-user=users.find(x=>x.email==email.value&&x.pass==fakeHash(pass.value))
-
-if(!user)return alert("ошибка")
-
-localStorage.setItem("session",user.email)
-
-showCabinet()
-
-addAction("логин")
-
+  localStorage.setItem("session",u.e)
+  show()
+  log("login")
 }
 
-function showCabinet(){
+function show(){
+  cab.classList.remove("hidden")
+  let users = JSON.parse(localStorage.getItem("users"))
+  let s = localStorage.getItem("session")
+  let u = users.find(x=>x.e==s)
 
-authBox.style.display="none"
-
-cabinet.style.display="block"
-
-users=JSON.parse(localStorage.getItem("users"))
-
-session=localStorage.getItem("session")
-
-user=users.find(x=>x.email==session)
-
-nickname.value=user.nick
-
-sub.innerHTML="Активна до "+new Date(user.sub).toLocaleDateString()
-
-online.innerHTML=Math.random()<0.2?"Онлайн: нет":"Онлайн: да"
-
+  sub.innerText = "sub: "+new Date(u.sub).toLocaleDateString()
 }
 
 function saveNick(){
-
-users=JSON.parse(localStorage.getItem("users"))
-
-session=localStorage.getItem("session")
-
-u=users.find(x=>x.email==session)
-
-u.nick=nickname.value
-
-localStorage.setItem("users",JSON.stringify(users))
-
+  let users = JSON.parse(localStorage.getItem("users"))
+  let s = localStorage.getItem("session")
+  let u = users.find(x=>x.e==s)
+  u.nick = nick.value
+  localStorage.setItem("users",JSON.stringify(users))
 }
 
-function extendSub(){
-
-users=JSON.parse(localStorage.getItem("users"))
-
-session=localStorage.getItem("session")
-
-u=users.find(x=>x.email==session)
-
-u.sub+=2592000000
-
-localStorage.setItem("users",JSON.stringify(users))
-
-showCabinet()
-
-}
-
-function toggleNews(el){
-
-txt=el.nextElementSibling
-
-txt.style.display=
-txt.style.display=="block"?
-"none":"block"
-
+function extend(){
+  let users = JSON.parse(localStorage.getItem("users"))
+  let s = localStorage.getItem("session")
+  let u = users.find(x=>x.e==s)
+  u.sub += 2592000000
+  localStorage.setItem("users",JSON.stringify(users))
+  show()
 }
 
 function inject(){
-
-injectBtn.classList.add("injected")
-
-showToast("Injected into Minecraft")
-
-console.log(
-"[LOG] injected "
-+new Date()
-)
-
-addAction("инжект")
-
-setTimeout(()=>{
-
-injectBtn.classList.remove("injected")
-
-},3000)
-
+  toast("Injected")
+  log("inject")
 }
 
-function showToast(text){
-
-toast.innerHTML=text
-
-toast.style.display="block"
-
-setTimeout(()=>{
-
-toast.style.display="none"
-
-},3000)
-
+function toast(t){
+  let el = document.getElementById("toast")
+  el.innerText = t
+  el.style.display="block"
+  setTimeout(()=>el.style.display="none",2000)
 }
 
-document.addEventListener(
-"keydown",
-e=>{
-
-if(
-e.ctrlKey&&
-e.shiftKey&&
-e.key=="K"
-){
-
-panel.style.display="block"
-
+function log(t){
+  let l = document.getElementById("log")
+  l.innerHTML = "<div>"+t+"</div>" + l.innerHTML
 }
 
-})
-
-function activatePremium(){
-
-if(
-premiumCode.value=="1337"
-){
-
-premiumResult.innerHTML=
-"Премиум разблокирован"
-
-}
-
-}
-
-function addAction(v){
-
-arr=
-JSON.parse(
-localStorage.getItem("actions")
-||"[]"
-)
-
-arr.unshift(v)
-
-arr=arr.slice(0,3)
-
-localStorage.setItem(
-"actions",
-JSON.stringify(arr)
-)
-
-loadActions()
-
-}
-
-function loadActions(){
-
-arr=
-JSON.parse(
-localStorage.getItem("actions")
-||"[]"
-)
-
-actions.innerHTML=""
-
-arr.forEach(x=>{
-
-actions.innerHTML+=
-"<p>"+x+"</p>"
-
-})
-
-}
-
-theme.checked=
-localStorage.getItem(
-"theme"
-)=="light"
-
-if(theme.checked){
-
-document.body.classList.add(
-"light"
-)
-
-}
-
-theme.onchange=()=>{
-
-if(theme.checked){
-
-document.body.classList.add(
-"light"
-)
-
-localStorage.setItem(
-"theme",
-"light"
-)
-
-}else{
-
-document.body.classList.remove(
-"light"
-)
-
-localStorage.setItem(
-"theme",
-"dark"
-)
-
-}
-
-}
-
-loadActions()
-
-if(
-localStorage.getItem(
-"session"
-)
-){
-
-showCabinet()
-
-}
+if(localStorage.getItem("session")) show()
 
 </script>
 
